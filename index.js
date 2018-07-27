@@ -24,13 +24,25 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLocaleLowerCase();
 
-    if(!client.commands.has(commandName)) {
-        console.log(`command ${commandName} not recognized`);
+    const command = client.commands.get(commandName)
+        || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+    if(!command) {
         return;
     }
 
+    if (command.args && !args.length) {
+        let reply = 'You didn\'t provide any arguments! See the proper usages below:';
+        if(command.usage) {
+            for (var i = 0; i < command.usage.length; i++) {
+                reply += `\n\t'${prefix}${command.name} ${command.usage[i]}`;
+            }
+        }
+        return message.reply(reply);
+    }
+
     try {
-       client.commands.get(commandName).execute(message, args);
+       command.execute(message, args);
     }
     catch (error) {
         console.error(error);
