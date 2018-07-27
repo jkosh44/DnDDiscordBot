@@ -1,0 +1,14 @@
+{
+  "name": "dnddiscordbot",
+  "version": "1.0.0",
+  "description": "Bot for the DnD Discord server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joseph Koshakow",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
