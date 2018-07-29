@@ -5,11 +5,13 @@ module.exports = {
     aliases: ['poop'],
 	execute(message, args) {
         const filter = m => m.content.includes('poop') && m.author.id == message.author.id;
-    
+        
+        let collector = null;
+
         if(args) {
-            const collector = message.channel.createMessageCollector(filter, {time: 15000, max: args[0]});
+            collector = message.channel.createMessageCollector(filter, {time: 15000, max: args[0]});
         } else {
-            const collector = message.channel.createMessageCollector(filter, {time: 15000});
+            collector = message.channel.createMessageCollector(filter, {time: 15000});
         }
 
         collector.on('collect', m => {
