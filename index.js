@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json')
+const { prefix, token } = require('./config.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -29,6 +29,10 @@ client.on('message', message => {
 
     if(!command) {
         return;
+    }
+    
+    if(command.authorizedUsers && !command.authorizedUsers.includes(message.author.id)) {
+        return message.reply('You are not authorized to use that command');
     }
     
     if (command.args && !args.length) {
