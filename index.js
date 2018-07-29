@@ -20,7 +20,7 @@ client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) {
         return;
     }
-    
+
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLocaleLowerCase();
 
@@ -30,7 +30,7 @@ client.on('message', message => {
     if(!command) {
         return;
     }
-
+    
     if (command.args && !args.length) {
         let reply = 'You didn\'t provide any arguments! See the proper usages below:';
         if(command.usage) {
@@ -46,7 +46,7 @@ client.on('message', message => {
     }
     catch (error) {
         console.error(error);
-        message.reply('there was an error trying to execute that command!');
+        message.reply('OOPSIE WOOPSIE!! Uwu We make a fucky wucky!! A wittle fucko boingo! <@259396529016537088> is working VEWY HAWD to fix this!');
     }
 });
 
