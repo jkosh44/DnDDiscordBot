@@ -1,4 +1,11 @@
 {
-    "bob": 5,
-    "ron": 1
+    "Common Enemies": {
+        "weight": 30,
+        "contents": ["bob"]
+    },
+
+    "Rare Enemies": {
+        "weight": 5,
+        "contents": ["ron"]
+    }
 }

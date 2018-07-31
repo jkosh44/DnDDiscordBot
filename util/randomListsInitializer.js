@@ -3,12 +3,16 @@ function randomListsInit(source) {
     let weightedDist = [];
     let totalWeight = 0;
     for (var name in jsonSource) {
-        const weight = jsonSource[name];
-        totalWeight += weight;
-        weightedDist.push({
-            name, 
-            weightedRange: totalWeight
-        });   
+        const tier = jsonSource[name];
+        const weight = tier['weight'];
+        const contents = tier['contents'];
+        for(var i = 0; i < contents.length; i++) {
+            totalWeight += weight;
+            weightedDist.push({
+                name: contents[i], 
+                weightedRange: totalWeight
+            });   
+        }
     }
     return {
         weightedDist,
