@@ -7,7 +7,7 @@ function randomListsInit(source) {
         totalWeight += weight;
         weightedDist.push({
             name, 
-            totalWeight
+            weightedRange: totalWeight
         });   
     }
     return {

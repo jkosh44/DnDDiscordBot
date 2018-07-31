@@ -1,8 +1,11 @@
 function encounter(weightedDist, totalWeight) {
     const randomNum = Math.floor(Math.random()*totalWeight)+1;
-    for(var item in weightedDist) {
-        if(weightedDist[item].totalWeight > randomNum) {
-            return weightedDist[item].name;
+    for(var i=0; i<weightedDist.length; i++) {
+        const weightedRange = weightedDist[i].weightedRange;
+        const name = weightedDist[i].name;
+        console.log(`weightedRange: ${weightedRange} \nname: ${name}`);
+        if(weightedRange > randomNum) {
+            return name;
         }
     }
 }
