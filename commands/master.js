@@ -1,11 +1,12 @@
 const manual = require('../resources/master-manual.json');
 const { prefix } = require('../config.json');
+const { dungeon_master } = require('../config.json');
 
 module.exports = {
     name: 'master',
     description: 'Direct messages the Dungeon Master some private info about the campaign',
     usage: ['<entry-name>', ''],
-    authorizedUsers: ['387434995276447745'],
+    authorizedUsers: [dungeon_master],
 	execute(message, args) {
         const data = [];
         if(!args.length) {
