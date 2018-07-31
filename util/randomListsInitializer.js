@@ -17,5 +17,6 @@ function randomListsInit(source) {
 }
 
 module.exports = {
-    weightedItems: randomListsInit('items.json')
+    weightedItems: randomListsInit('items.json'),
+    weightedEnemies: randomListsInit('enemies.json')
 }

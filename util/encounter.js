@@ -3,7 +3,7 @@ function encounter(weightedDist, totalWeight) {
     for(var i=0; i<weightedDist.length; i++) {
         const weightedRange = weightedDist[i].weightedRange;
         const name = weightedDist[i].name;
-        if(weightedRange > randomNum) {
+        if(weightedRange >= randomNum) {
             return name;
         }
     }
