@@ -1,4 +1,4 @@
-const manual = require('../manuals/manual.json');
+const manual = require('../resources/manual.json');
 const { prefix } = require('../config.json');
 
 module.exports = {
