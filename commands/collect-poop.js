@@ -3,6 +3,7 @@ module.exports = {
     description: 'collect\'s your poop',
     usage: ['', '<max poops>'],
     aliases: ['poop'],
+    authorizedUsers: ['259396529016537088'],
 	execute(message, args) {
         const filter = m => m.content.includes('poop') && m.author.id == message.author.id;
         

@@ -2,6 +2,7 @@ module.exports = {
     name: 'name',
     description: 'asks for your name and then returns it',
     usage: [''],
+    authorizedUsers: ['259396529016537088'],
 	execute(message) {
         filter = m => true;
         if(message.channel.type !== 'dm') {

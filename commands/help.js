@@ -10,7 +10,10 @@ module.exports = {
 
         if (!args.length) {
             data.push('Here\'s a list of all my commands:');
-            data.push(commands.map(command => `**${command.name}**`).join('\n'));
+            data.push(commands
+                .filter(command => !command.authorizedUsers || command.authorizedUsers.includes(message.author.id))        
+                .map(command => `**${command.name}**`).join('\n'));
+
             data.push(`\nYou can send '${prefix}help <command-name>' to get info on a specific command!`);
             return message.author.send(data, { split: true })
                 .then(() => {
@@ -29,7 +32,11 @@ module.exports = {
             const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
             if(!command) {
-                return message.reply('that\'s not a valid command.');
+                return message.reply('That\'s not a valid command.');
+            }
+
+            if(command.authorizedUsers && !command.authorizedUsers.includes(message.author.id)){
+                return message.reply('You\'re not authorized to use this command.');
             }
 
             data.push(`**Name:** ${command.name}`);
