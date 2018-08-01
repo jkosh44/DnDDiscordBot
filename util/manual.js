@@ -14,7 +14,7 @@ function manualLookUp(message, args, manualName, manualFileName, commandName) {
                 if(message.channel.type === 'dm') {
                     return;
                 }
-                message.reply('I\'ve send you a DM with all the ${manualName} entries.');
+                message.reply(`I've send you a DM with all the ${manualName} entries.`);
             })
             .catch(error => {
                 console.error(`Could not send dm DM to ${message.author.tag}.\n`, error);
