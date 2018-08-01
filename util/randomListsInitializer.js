@@ -1,4 +1,4 @@
-function randomListsInit(source) {
+function tieredRandomListInit(source) {
     const jsonSource = require(`../resources/${source}`);
     let weightedDist = [];
     let totalWeight = 0;
@@ -9,7 +9,7 @@ function randomListsInit(source) {
         for(var i = 0; i < contents.length; i++) {
             totalWeight += weight;
             weightedDist.push({
-                name: contents[i], 
+                content: contents[i], 
                 weightedRange: totalWeight
             });   
         }
@@ -20,7 +20,29 @@ function randomListsInit(source) {
     }
 }
 
+function randomListInit(source) {
+    const jsonSource = require(`../resources/${source}`);
+    let weightedDist = [];
+    let totalWeight = 0;
+    for (var name in jsonSource) {
+        const enemy = jsonSource[name];
+        enemy['Name'] = name;
+        const weight = enemy['Weight'];
+        totalWeight += weight;
+        weightedDist.push({
+            content: enemy,
+            weightedRange: totalWeight
+        });
+    }
+    return {
+        weightedDist,
+        totalWeight
+    }
+}
+
 module.exports = {
-    weightedItems: randomListsInit('items.json'),
-    weightedEnemies: randomListsInit('enemies.json')
+    weightedItems: tieredRandomListInit('items.json'),
+    weightedEnemiesByArea: {
+        "gen": randomListInit('gen-enemy-info.json')
+    }
 }
