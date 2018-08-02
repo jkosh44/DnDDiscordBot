@@ -43,6 +43,12 @@ function randomListInit(source) {
 module.exports = {
     weightedItems: tieredRandomListInit('items.json'),
     weightedEnemiesByArea: {
-        "gen": randomListInit('gen-enemy-info.json')
+        "gen": randomListInit('gen-enemy-info.json'),
+        "delsi": randomListInit('delsi-enemy-info.json'),
+        "fia": randomListInit('fia-enemy-info.json'),
+        "gates": randomListInit('gates-enemy-info.json'),
+        "houst": randomListInit('houst-enemy-info.json'),
+        "londai": randomListInit('londai-enemy-info.json'),
+        "sengala": randomListInit('sengala-enemy-info.json'),
     }
 }

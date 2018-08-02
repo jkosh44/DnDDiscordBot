@@ -1,0 +1,56 @@
+{
+    "Aboleth": {
+        "Weight": 0.1,
+        "Info": "Much like a very toothy BJ, the Aboleth will fuck your day up.",
+        "Man-Page": 13,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Water weird": {
+        "Weight": 0.3333,
+        "Info": "Weirdest water I’ve ever seen.",
+        "Man-Page": 299,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Troglodyte": {
+        "Weight": 4,
+        "Info": "The thing from the swamp!  It’s come to give you east EXP!!!!",
+        "Man-Page": 290,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Piercer": {
+        "Weight": 2,
+        "Info": "Gross.",
+        "Man-Page": 252,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Kraken": {
+        "Weight": 0.0435,
+        "Info": "Unlucky you.  Release the KRAKEN!",
+        "Man-Page": 197,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Marid": {
+        "Weight": 0.0909,
+        "Info": "Like a genie…but a frog also.",
+        "Man-Page": 146,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Elemental": {
+        "Weight": 0.2,
+        "Info": "It’s all in the name bruddah.",
+        "Man-Page": 124,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Dragon Turtle": {
+        "Weight": 0.0588,
+        "Info": "Big ol bitey boi.  Meme aside though, this is pretty much a dragon battle, so nut up or shut up.",
+        "Man-Page": 119,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Behir": {
+        "Weight": 0.0909,
+        "Info": "Mid-range monsters will still rock your shit.",
+        "Man-Page": 25,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    }
+}

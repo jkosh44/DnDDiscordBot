@@ -1,0 +1,56 @@
+{
+    "Xorn": {
+        "Weight": 0.2,
+        "Info": "Hmmmmm.  Looks suggestive.",
+        "Man-Page": 304,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Umber Hulk": {
+        "Weight": 0.2,
+        "Info": "Answering the question, what if Bruce Banner was testing serums in a Brooklyn apartment.",
+        "Man-Page": 292,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Treant": {
+        "Weight": 0.1111,
+        "Info": "Scrooge McDuck, but a tree.",
+        "Man-Page": 289,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Thri-Kreen": {
+        "Weight": 1,
+        "Info": "Gods, what’s with all the BUGS!",
+        "Man-Page": 12,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Tarrasque": {
+        "Weight": 0.0333,
+        "Info": "You should probably run.",
+        "Man-Page": 286,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Shambling Mound": {
+        "Weight": 0.2,
+        "Info": "He’s coming for you, vegans.",
+        "Man-Page": 270,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Rust monster": {
+        "Weight": 2,
+        "Info": "Like a flea that eats your car.",
+        "Man-Page": 262,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Purple Worm": {
+        "Weight": 0.0667,
+        "Info": "I.  Hate.  SAND!",
+        "Man-Page": 255,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Elemental": {
+        "Weight": 0.2,
+        "Info": "The name pretty much says it dude.",
+        "Man-Page": 124,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Salamander": {
+        "Weight": 0.2,
+        "Info": "Not the kind commonly found under birch trees",
+        "Man-Page": 266,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Fire Snake": {
+        "Weight": 1,
+        "Info": "Imma lick it",
+        "Man-Page": 265,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Hell hound": {
+        "Weight": 0.3333,
+        "Info": "Spot here devours the souls of the damned.  Good boy! 9/10.",
+        "Man-Page": 182,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Flame Skull": {
+        "Weight": 0.25,
+        "Info": "Doot Doot.",
+        "Man-Page": 134,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Elemental": {
+        "Weight": 0.2,
+        "Info": "It’s all in the name.",
+        "Man-Page": 124,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Balor": {
+        "Weight": 0.0526,
+        "Info": "Demon with a lightning sword and a fire whip.  Good fucking luck bucko.",
+        "Man-Page": 55,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    },
+    "Azer": {
+        "Weight": 0.5,
+        "Info": "Bad things come in small packages, so do squishy ones like this guy.",
+        "Man-Page": 22,
+        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+    }
+}
