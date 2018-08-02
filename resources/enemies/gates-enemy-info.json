@@ -3,96 +3,96 @@
         "Weight": 0.2,
         "Info": "Death walks among you.",
         "Man-Page": 302,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Wraith.PNG"
     },
     "Succubus": {
         "Weight": 0.25,
         "Info": "Harder daddy.",
         "Man-Page": 285,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Succubus.PNG"
     },
     "Incubus": {
         "Weight": 0.25,
         "Info": "Harder daddy.",
         "Man-Page": 285,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Incubus.PNG"
     },
-    "Spectre": {
+    "Specter": {
         "Weight": 1,
         "Info": "Spooky Scary.",
         "Man-Page": 279,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Specter.PNG"
     },
     "Nothic": {
         "Weight": 0.5,
         "Info": "He’s got his eye on you.",
         "Man-Page": 236,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Nothic.PNG"
     },
     "Lich": {
         "Weight": 0.0476,
         "Info": "How many Lichs does it take?",
         "Man-Page": 202,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Lich.PNG"
     },
     "Mummy": {
         "Weight": 0.3333,
         "Info": "Retuuuurn the Slaaaaaaaaab!",
         "Man-Page": 228,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Mummy.PNG"
     },
     "Mummy Lord": {
         "Weight": 0.0667,
         "Info": "REEEETTUUUUUUURN THHHEEEE SLLAAAAAAAAAAAAABBBB!!!!!",
         "Man-Page": 266,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Mummy Lord.PNG"
     },
     "Gorgon": {
         "Weight": 0.2,
         "Info": "Gorgon gorgon.  Gorgon!",
         "Man-Page": 171,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Gorgon.PNG"
     },
     "Flesh Golem": {
         "Weight": 0.2,
         "Info": "It puts the lotion in the basket!",
         "Man-Page": 169,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Flesh Golem.PNG"
     },
     "Elemental": {
         "Weight": 0.2,
         "Info": "It’s all in the name.",
         "Man-Page": 124,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Elemental.PNG"
     },
     "Demilich": {
         "Weight": 0.0556,
         "Info": "Retuuurn the slaaaaaab.",
         "Man-Page": 48,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Demilich.PNG"
     },
     "Death Knight": {
         "Weight": 0.0588,
         "Info": "Simple and to the point.  He’s a knight, and he’s most likely going to kill at least a couple of you.",
         "Man-Page": 47,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Death Knight.PNG"
     },
     "Spectator": {
         "Weight": 0.3333,
         "Info": "Like a beholder, but way, way shittier.",
         "Man-Page": 30,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Spectator.PNG"
     },
     "Death Tyrant": {
         "Weight": 0.0714,
         "Info": "Floaty head go bitey bitey.",
         "Man-Page": 29,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Death Tyrant.PNG"
     },
     "Beholder": {
         "Weight": 0.0769,
         "Info": "I literally had a nightmare once where this guy lived in my attic…anywho he’s gonna wreck you now probably.",
         "Man-Page": 28,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Beholder.PNG"
     }
 }

@@ -3,18 +3,18 @@
         "Weight": 0.1667,
         "Info": "Shittier Dragon.",
         "Man-Page": 303,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Wyvern.PNG"
     },
     "Otyugh": {
         "Weight": 0.2,
         "Info": "Big and gross.",
         "Man-Page": 248,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Otyugh.PNG"
     },
     "Dragon (roll d20)": {
         "Weight": 0.05,
         "Info": "They’re in the title of the game for a reason.  Prepare yourself.",
         "Man-Page": 85,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Dragon.PNG"
     }
 }

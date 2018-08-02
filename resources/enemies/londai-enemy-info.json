@@ -1,38 +1,38 @@
 {
-    "Aarktar": {
+    "Aarakocra": {
         "Weight": 4,
         "Info": "Watch out here comes bird brain!",
         "Man-Page": 12,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Aarakocra.PNG"
     },
     "Roc": {
         "Weight": 0.0909,
         "Info": "Dwayne",
         "Man-Page": 260,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Roc.PNG"
     },
     "Peryton": {
         "Weight": 0.5,
         "Info": "Mean little deer-bird you should have no trouble drop kicking to Timbuktu.",
         "Man-Page": 251,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Peryton.PNG"
     },
     "Owlbear": {
         "Weight": 0.3333,
         "Info": "More bear than owl tbh.",
         "Man-Page": 249,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Owlbear.PNG"
     },
     "Elemental": {
         "Weight": 0.2,
         "Info": "See the name for more info.",
         "Man-Page": 124,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Elemental.PNG"
     },
     "Banshee": {
         "Weight": 0.25,
         "Info": "The voice of a crown dispersion speaker.",
         "Man-Page": 23,
-        "Img": "./resources/imgs/DX7-387X4AADeKs.jpg"
+        "Img": "./resources/imgs/Banshee.PNG"
     }
 }
