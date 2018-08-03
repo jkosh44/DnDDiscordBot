@@ -34,17 +34,15 @@ module.exports = {
                 return message.reply('I\'m sorry that area doesn\'t exist. For a list of all areas execute the command again with no arguments.');
             }
             const enemy = encounter(weightedEnemies.weightedDist, weightedEnemies.totalWeight);
-            try{
-                const embed = new Discord.RichEmbed()
-                    .setTitle('You\'ve encountered an enemy!')
-                    .addField(`The monster is ${enemy['Name']}`, `${enemy['Info']}`)
-                    .attachFile(`${enemy['Img']}`)
-                message.channel.send({embed});
-            }
-            catch(e) {
-                console.log(`Error getting enemy information:\n${e}`);
-                message.channel.send(`Error getting info for enemy ${enemy['Name']}. Please check configuration files.`);
-            }
+            const embed = new Discord.RichEmbed()
+                .setTitle('You\'ve encountered an enemy!')
+                .addField(`The monster is ${enemy['Name']}`, `${enemy['Info']}`)
+                .attachFile(`${enemy['Img']}`)
+            message.channel.send({embed})
+                .catch(e => {
+                    console.log(`Error getting enemy information:\n${e}`);
+                    message.channel.send(`Error getting info for enemy ${enemy['Name']}. Please check configuration files.`)
+                });
         }
     },
 };
