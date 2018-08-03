@@ -1,18 +1,18 @@
-{
+﻿{
     "Stirge": {
-        "Weight": 8,
+        "Weight": 2,
         "Info": "Honestly not sure what this is supposed to be, but it’ll be dead in a second, so who cares",
         "Man-Page": 284,
         "Img": "./resources/imgs/Stirge.PNG"
     },
     "Sprite": {
-        "Weight": 4,
+        "Weight": 1.0,
         "Info": "If Tinkerbell were Irish ",
         "Man-Page": 283,
         "Img": "./resources/imgs/Sprite.PNG"
     },
     "Skeleton": {
-        "Weight": 4,
+        "Weight": 1.0,
         "Info": "The basic bitch of DnD",
         "Man-Page": 272,
         "Img": "./resources/imgs/Skeleton.PNG"
@@ -132,7 +132,7 @@
         "Img": "./resources/imgs/Yochlol.PNG"
     },
     "Scary Mane":{
-        "Weight": 8,
+        "Weight": 1,
         "Info": "Ooooh, he’s one scary mane, look out!",
         "Man-Page": 60,
         "Img": "./resources/imgs/Scary Mane.PNG"
