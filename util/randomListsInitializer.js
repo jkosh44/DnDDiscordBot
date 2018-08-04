@@ -43,12 +43,12 @@ function randomListInit(source) {
 module.exports = {
     weightedItems: tieredRandomListInit('items.json'),
     weightedEnemiesByArea: {
-        "gen": randomListInit('enemies/gen-enemy-info.json'),
-        "delsi": randomListInit('enemies/delsi-enemy-info.json'),
-        "fia": randomListInit('enemies/fia-enemy-info.json'),
-        "gates": randomListInit('enemies/gates-enemy-info.json'),
-        "houst": randomListInit('enemies/houst-enemy-info.json'),
-        "londai": randomListInit('enemies/londai-enemy-info.json'),
-        "sengala": randomListInit('enemies/sengala-enemy-info.json'),
+        "gen": tieredRandomListInit('enemies/gen-enemy-info.json'),
+        "delsi": tieredRandomListInit('enemies/delsi-enemy-info.json'),
+        "fia": tieredRandomListInit('enemies/fia-enemy-info.json'),
+        "gates": tieredRandomListInit('enemies/gates-enemy-info.json'),
+        "houst": tieredRandomListInit('enemies/houst-enemy-info.json'),
+        "londai": tieredRandomListInit('enemies/londai-enemy-info.json'),
+        "sengala": tieredRandomListInit('enemies/sengala-enemy-info.json'),
     }
 }

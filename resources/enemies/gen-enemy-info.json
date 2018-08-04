@@ -1,152 +1,181 @@
 ﻿{
-    "Stirge": {
-        "Weight": 2,
-        "Info": "Honestly not sure what this is supposed to be, but it’ll be dead in a second, so who cares",
-        "Man-Page": 284,
-        "Img": "./resources/imgs/Stirge.PNG"
+    "Fucking Plebs": {
+        "weight": 10,
+        "contents": [
+            {
+                "Name": "Stirge",
+                "Info": "Honestly not sure what this is supposed to be, but it’ll be dead in a second, so who cares",
+                "Man-Page": 284,
+                "Img": "./resources/imgs/Stirge.PNG"
+            },
+            {
+                "Name": "Sprite",
+                "Info": "If Tinkerbell were Irish ",
+                "Man-Page": 283,
+                "Img": "./resources/imgs/Sprite.PNG"
+            },
+            {
+                "Name": "Skeleton",
+                "Info": "The basic bitch of DnD",
+                "Man-Page": 272,
+                "Img": "./resources/imgs/Skeleton.PNG"
+            },
+            {
+                "Name": "Scarecrow",
+                "Info": "Shitty Batman villian",
+                "Man-Page": 268,
+                "Img": "./resources/imgs/Scarecrow.PNG"
+            },
+            {
+                "Name": "Shadow",
+                "Info": "Explaining why you should be afraid of your own shadow",
+                "Man-Page": 269,
+                "Img": "./resources/imgs/Shadow.PNG"
+            },
+            {
+                "Name": "Scary Mane",
+                "Info": "Ooooh, he’s one scary mane, look out!",
+                "Man-Page": 60,
+                "Img": "./resources/imgs/Scary Mane.PNG"
+            }
+        ] 
     },
-    "Sprite": {
-        "Weight": 1.0,
-        "Info": "If Tinkerbell were Irish ",
-        "Man-Page": 283,
-        "Img": "./resources/imgs/Sprite.PNG"
+
+    "Still soft af": {
+        "weight": 5,
+        "contents": [
+            {
+                "Name": "Minotaur Skeleton",
+                "Info": "Still not a challenge, but bigger",
+                "Man-Page": 273,
+                "Img": "./resources/imgs/Minotaur Skeleton.PNG"
+            },
+            {
+                "Name": "Will O’ Wisp",
+                "Info": "Squishy but annoying",
+                "Man-Page": 301,
+                "Img": "./resources/imgs/Will O' Wisp.PNG"
+            },
+            {
+                "Name": "Quaggoth",
+                "Info": "Bigfoot’s creepy uncle.",
+                "Man-Page":256,
+                "Img": "./resources/imgs/Quaggoth.PNG"
+            },
+            {
+                "Name": "Ochre Jelly",
+                "Info": "Sploosh",
+                "Man-Page": 243,
+                "Img": "./resources/imgs/Ochre Jelly.PNG"
+            },
+            {
+                "Name": "Drone (roll d6)",
+                "Info": "The “Minions” of DnD.  If you didn’t have enough of a reason to kill them already",
+                "Man-Page": 224,
+                "Img": "./resources/imgs/Drones.PNG"
+            },
+            {
+                "Name": "Intellect Devourer",
+                "Info": "A mind with a mind of its own",
+                "Man-Page": 191,
+                "Img": "./resources/imgs/Intellect Devourer.PNG"
+            },
+            {
+                "Name": "Gibbering Mouther",
+                "Info": "God fucking damn does this fucker look scary! Fuuuuuuuuuuuuuuuuuuuuuuuuuuuuu….",
+                "Man-Page": 157,
+                "Img": "./resources/imgs/Gibbering Mouther.PNG"
+            }
+        ]
     },
-    "Skeleton": {
-        "Weight": 1.0,
-        "Info": "The basic bitch of DnD",
-        "Man-Page": 272,
-        "Img": "./resources/imgs/Skeleton.PNG"
+
+    "Sturdy Bois": {
+        "weight": 3,
+        "contents": [
+            {
+                "Name": "Vampire Spawn",
+                "Info": "A meh vampire at best",
+                "Man-Page": 12,
+                "Img": "./resources/imgs/Vampire Spawn.PNG"
+            },
+            {
+                "Name": "Roper",
+                "Info": "Less freaky, but more powerful than the mouther",
+                "Man-Page": 261,
+                "Img": "./resources/imgs/Roper.PNG"
+            },
+            {
+                "Name": "Young Remorhaz",
+                "Info": "A face only a mother could love",
+                "Man-Page": 258,
+                "Img": "./resources/imgs/Young Remorhaz.PNG"
+            },
+            {
+                "Name": "Invisible Stalker",
+                "Info": "He just wants a hug!!!",
+                "Man-Page": 192,
+                "Img": "./resources/imgs/Invisible Stalker.PNG"
+            },
+            {
+                "Name": "Elemental",
+                "Info": "Name says it all mang.",
+                "Man-Page": 124,
+                "Img": "./resources/imgs/Elemental.PNG"
+            },
+            {
+                "Name": "Drider",
+                "Info": "Hey look!  It’s the BDSM character from Monster Musume!",
+                "Man-Page": 120,
+                "Img": "./resources/imgs/Drider.PNG"
+            },
+            {
+                "Name": "Chuul",
+                "Info": "The love child of Orisa, Cthulu, and a crab",
+                "Man-Page": 40,
+                "Img": "./resources/imgs/Chuul.PNG"
+            }
+        ]
     },
-    "Minotaur Skeleton": {
-        "Weight": 0.5,
-        "Info": "Still not a challenge, but bigger",
-        "Man-Page": 273,
-        "Img": "./resources/imgs/Minotaur Skeleton.PNG"
+
+    "Fucking Units": {
+        "weight": 2,
+        "contents": [
+            {
+                "Name": "Remorhaz",
+                "Info": "Mother-",
+                "Man-Page": 266,
+                "Img": "./resources/imgs/Remorhaz.PNG"
+            },
+            {
+                "Name": "Yochlol",
+                "Info": "Oh great, who invited cum log…spunk stump…jizz twig…okay I’m done.",
+                "Man-Page": 65,
+                "Img": "./resources/imgs/Yochlol.PNG"
+            },
+            {
+                "Name": "Grick Alpha",
+                "Info": "Here comes snaketopus.",
+                "Man-Page": 173,
+                "Img": "./resources/imgs/Grick Alpha.PNG"
+            },
+            {
+                "Name": "Cloaker",
+                "Info": "Looks like a squishy but isn’t",
+                "Man-Page": 41,
+                "Img": "./resources/imgs/Cloaker.PNG"
+            }
+        ]
     },
-    "Will O’ Wisp":{
-        "Weight": 0.5,
-        "Info": "Squishy but annoying",
-        "Man-Page": 301,
-        "Img": "./resources/imgs/Will O' Wisp.PNG"
-    },
-    "Vampire Spawn": {
-        "Weight": 0.2,
-        "Info": "A meh vampire at best",
-        "Man-Page": 12,
-        "Img": "./resources/imgs/Vampire Spawn.PNG"
-    },
-    "Scarecrow": {
-        "Weight": 1,
-        "Info": "Shitty Batman villian",
-        "Man-Page": 268,
-        "Img": "./resources/imgs/Scarecrow.PNG"
-    },
-    "Shadow": {
-        "Weight": 1,
-        "Info": "Explaining why you should be afraid of your own shadow",
-        "Man-Page": 269,
-        "Img": "./resources/imgs/Shadow.PNG"
-    },
-    "Roper":{
-        "Weight": 0.2,
-        "Info": "Less freaky, but more powerful than the mouther",
-        "Man-Page": 261,
-        "Img": "./resources/imgs/Roper.PNG"
-    },
-    "Young Remorhaz":{
-        "Weight": 0.2,
-        "Info": "A face only a mother could love",
-        "Man-Page": 258,
-        "Img": "./resources/imgs/Young Remorhaz.PNG"
-    },
-    "Remorhaz":{
-        "Weight": 0.0909,
-        "Info": "Mother-",
-        "Man-Page": 266,
-        "Img": "./resources/imgs/Remorhaz.PNG"
-    },
-    "Rakshasa":{
-        "Weight": 0.0769,
-        "Info": "He’s that one tiger from Zootopia on the train that would treat you RIGHT!",
-        "Man-Page": 257,
-        "Img": "./resources/imgs/Rakshasa.PNG"
-    },
-    "Quaggoth":{
-        "Weight": 0.05,
-        "Info": "Bigfoot’s creepy uncle.",
-        "Man-Page":256,
-        "Img": "./resources/imgs/Quaggoth.PNG"
-    },
-    "Ochre Jelly":{
-        "Weight": 0.5,
-        "Info": "Sploosh",
-        "Man-Page": 243,
-        "Img": "./resources/imgs/Ochre Jelly.PNG"
-    },
-    "Drone (roll d6)":{
-        "Weight": 0.5,
-        "Info": "The “Minions” of DnD.  If you didn’t have enough of a reason to kill them already",
-        "Man-Page": 224,
-        "Img": "./resources/imgs/Drones.PNG"
-    },
-    "Invisible Stalker":{
-        "Weight": 0.1667,
-        "Info": "He just wants a hug!!!",
-        "Man-Page": 192,
-        "Img": "./resources/imgs/Invisible Stalker.PNG"
-    },
-    "Intellect Devourer":{
-        "Weight": 0.5,
-        "Info": "A mind with a mind of its own",
-        "Man-Page": 191,
-        "Img": "./resources/imgs/Intellect Devourer.PNG"
-    },
-    "Grick Alpha":{
-        "Weight": 0.1429,
-        "Info": "Here comes snaketopus.",
-        "Man-Page": 173,
-        "Img": "./resources/imgs/Grick Alpha.PNG"
-    },
-    "Gibbering Mouther":{
-        "Weight": 0.5,
-        "Info": "God fucking damn does this fucker look scary! Fuuuuuuuuuuuuuuuuuuuuuuuuuuuuu….",
-        "Man-Page": 157,
-        "Img": "./resources/imgs/Gibbering Mouther.PNG"
-    },
-    "Elemental":{
-        "Weight": 0.2,
-        "Info": "Name says it all mang.",
-        "Man-Page": 124,
-        "Img": "./resources/imgs/Elemental.PNG"
-    },
-    "Drider":{
-        "Weight": 0.1667,
-        "Info": "Hey look!  It’s the BDSM character from Monster Musume!",
-        "Man-Page": 120,
-        "Img": "./resources/imgs/Drider.PNG"
-    },
-    "Yochlol":{
-        "Weight": 0.1,
-        "Info": "Oh great, who invited cum log…spunk stump…jizz twig…okay I’m done.",
-        "Man-Page": 65,
-        "Img": "./resources/imgs/Yochlol.PNG"
-    },
-    "Scary Mane":{
-        "Weight": 1,
-        "Info": "Ooooh, he’s one scary mane, look out!",
-        "Man-Page": 60,
-        "Img": "./resources/imgs/Scary Mane.PNG"
-    },
-    "Chuul":{
-        "Weight": 0.25,
-        "Info": "The love child of Orisa, Cthulu, and a crab",
-        "Man-Page": 40,
-        "Img": "./resources/imgs/Chuul.PNG"
-    },
-    "Cloaker":{
-        "Weight": 0.125,
-        "Info": "Looks like a squishy but isn’t",
-        "Man-Page": 41,
-        "Img": "./resources/imgs/Cloaker.PNG"
+
+    "Just Run": {
+        "weight": 1,
+        "contents": [
+            {
+                "Name": "Rakshasa",
+                "Info": "He’s that one tiger from Zootopia on the train that would treat you RIGHT!",
+                "Man-Page": 257,
+                "Img": "./resources/imgs/Rakshasa.PNG"
+            }
+        ]
     }
 }

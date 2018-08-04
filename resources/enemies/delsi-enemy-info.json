@@ -1,56 +1,79 @@
 {
-    "Xorn": {
-        "Weight": 0.2,
-        "Info": "Hmmmmm.  Looks suggestive.",
-        "Man-Page": 304,
-        "Img": "./resources/imgs/Xorn.PNG"
+    "Fuckin Plebs": {
+        "weight": 10,
+        "contents": [
+            {
+                "Name": "Thri-Kreen",
+                "Info": "Gods, what’s with all the BUGS!",
+                "Man-Page": 12,
+                "Img": "./resources/imgs/Thri-Kreen.PNG"
+            },
+            {
+                "Name": "Rust Monster",
+                "Info": "Like a flea that eats your car.",
+                "Man-Page": 262,
+                "Img": "./resources/imgs/Rust Monster.PNG"
+            }
+        ]
     },
-    "Umber Hulk": {
-        "Weight": 0.2,
-        "Info": "Answering the question, what if Bruce Banner was testing serums in a Brooklyn apartment.",
-        "Man-Page": 292,
-        "Img": "./resources/imgs/Umber Hulk.PNG"
+
+    "Sturdy Bois": {
+        "weight": 3,
+        "contents": [
+            {
+                "Name": "Xorn",
+                "Info": "Hmmmmm.  Looks suggestive.",
+                "Man-Page": 304,
+                "Img": "./resources/imgs/Xorn.PNG"
+            },
+             {
+                "Name": "Umber Hulk",
+                "Info": "Answering the question, what if Bruce Banner was testing serums in a Brooklyn apartment.",
+                "Man-Page": 292,
+                "Img": "./resources/imgs/Umber Hulk.PNG"
+            },
+            {
+                "Name": "Elemental",
+                "Info": "The name pretty much says it dude.",
+                "Man-Page": 124,
+                "Img": "./resources/imgs/Elemental.PNG"
+            },
+            {
+                "Name": "Shambling Mound",
+                "Info": "He’s coming for you, vegans.",
+                "Man-Page": 270,
+                "Img": "./resources/imgs/Shambling Mound.PNG"
+            }
+        ]
     },
-    "Treant": {
-        "Weight": 0.1111,
-        "Info": "Scrooge McDuck, but a tree.",
-        "Man-Page": 289,
-        "Img": "./resources/imgs/Treant.PNG"
+
+    "Fucking Units": {
+        "weight": 2,
+        "contents": [
+            {
+                "Name": "Purple Worm",
+                "Info": "I.  Hate.  SAND!",
+                "Man-Page": 255,
+                "Img": "./resources/imgs/Purple Worm.PNG"
+            },
+            {
+                "Name": "Treant",
+                "Info": "Scrooge McDuck, but a tree.",
+                "Man-Page": 289,
+                "Img": "./resources/imgs/Treant.PNG"
+            }
+        ]
     },
-    "Thri-Kreen": {
-        "Weight": 1,
-        "Info": "Gods, what’s with all the BUGS!",
-        "Man-Page": 12,
-        "Img": "./resources/imgs/Thri-Kreen.PNG"
-    },
-    "Tarrasque": {
-        "Weight": 0.0333,
-        "Info": "You should probably run.",
-        "Man-Page": 286,
-        "Img": "./resources/imgs/Tarrasque.PNG"
-    },
-    "Shambling Mound": {
-        "Weight": 0.2,
-        "Info": "He’s coming for you, vegans.",
-        "Man-Page": 270,
-        "Img": "./resources/imgs/Shambling Mound.PNG"
-    },
-    "Rust Monster": {
-        "Weight": 2,
-        "Info": "Like a flea that eats your car.",
-        "Man-Page": 262,
-        "Img": "./resources/imgs/Rust Monster.PNG"
-    },
-    "Purple Worm": {
-        "Weight": 0.0667,
-        "Info": "I.  Hate.  SAND!",
-        "Man-Page": 255,
-        "Img": "./resources/imgs/Purple Worm.PNG"
-    },
-    "Elemental": {
-        "Weight": 0.2,
-        "Info": "The name pretty much says it dude.",
-        "Man-Page": 124,
-        "Img": "./resources/imgs/Elemental.PNG"
+
+    "Just Run": {
+        "weight": 1,
+        "contents": [
+            {
+                "Name": "Tarrasque",
+                "Info": "You should probably run.",
+                "Man-Page": 286,
+                "Img": "./resources/imgs/Tarrasque.PNG"
+            }
+        ]
     }
 }

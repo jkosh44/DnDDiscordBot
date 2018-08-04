@@ -1,20 +1,31 @@
 {
-    "Wyvern": {
-        "Weight": 0.1667,
-        "Info": "Shittier Dragon.",
-        "Man-Page": 303,
-        "Img": "./resources/imgs/Wyvern.PNG"
+    "Fuckin Plebs": {
+        "weight": 10,
+        "contents": [
+            {
+                "Name": "Wyvern",
+                "Info": "Shittier Dragon.",
+                "Man-Page": 303,
+                "Img": "./resources/imgs/Wyvern.PNG"
+            },
+            {
+                "Name": "Otyugh",
+                "Info": "Big and gross.",
+                "Man-Page": 248,
+                "Img": "./resources/imgs/Otyugh.PNG"
+            }
+        ]
     },
-    "Otyugh": {
-        "Weight": 0.2,
-        "Info": "Big and gross.",
-        "Man-Page": 248,
-        "Img": "./resources/imgs/Otyugh.PNG"
-    },
-    "Dragon (roll d20)": {
-        "Weight": 0.05,
-        "Info": "They’re in the title of the game for a reason.  Prepare yourself.",
-        "Man-Page": 85,
-        "Img": "./resources/imgs/Dragon.PNG"
+
+    "Sturdy Bois": {
+        "weight": 3,
+        "contents": [
+            {
+                "Name": "Dragon (roll d20)",
+                "Info": "They’re in the title of the game for a reason.  Prepare yourself.",
+                "Man-Page": 85,
+                "Img": "./resources/imgs/Dragon.PNG"
+            }
+        ]
     }
 }

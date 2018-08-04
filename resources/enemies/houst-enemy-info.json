@@ -1,56 +1,85 @@
 {
-    "Aboleth": {
-        "Weight": 0.1,
-        "Info": "Much like a very toothy BJ, the Aboleth will fuck your day up.",
-        "Man-Page": 13,
-        "Img": "./resources/imgs/Aboleth.PNG"
+    "Fuckin Plebs": {
+        "weight": 10,
+        "contents": [
+            {
+                "Name": "Water Weird",
+                "Info": "Weirdest water I’ve ever seen.",
+                "Man-Page": 299,
+                "Img": "./resources/imgs/Water Weird.PNG"
+            },
+            {
+                "Name": "Troglodyte",
+                "Info": "The thing from the swamp!  It’s come to give you east EXP!!!!",
+                "Man-Page": 290,
+                "Img": "./resources/imgs/Troglodyte.PNG"
+            },
+            {
+                "Name": "Piercer",
+                "Info": "Gross.",
+                "Man-Page": 252,
+                "Img": "./resources/imgs/Piercer.PNG"
+            }
+        ]
     },
-    "Water Weird": {
-        "Weight": 0.3333,
-        "Info": "Weirdest water I’ve ever seen.",
-        "Man-Page": 299,
-        "Img": "./resources/imgs/Water Weird.PNG"
+
+    "Still soft af": {
+        "weight": 5,
+        "contents": [
+            {
+                "Name": "Elemental",
+                "Info": "It’s all in the name bruddah.",
+                "Man-Page": 124,
+                "Img": "./resources/imgs/Elemental.PNG"
+            }
+        ]
     },
-    "Troglodyte": {
-        "Weight": 4,
-        "Info": "The thing from the swamp!  It’s come to give you east EXP!!!!",
-        "Man-Page": 290,
-        "Img": "./resources/imgs/Troglodyte.PNG"
+
+    "Sturdy Bois": {
+        "weight": 3,
+        "contents": [
+            {
+                "Name": "Behir",
+                "Info": "Mid-range monsters will still rock your shit.",
+                "Man-Page": 25,
+                "Img": "./resources/imgs/Behir.PNG"
+            },
+            {
+                "Name": "Aboleth",
+                "Info": "Much like a very toothy BJ, the Aboleth will fuck your day up.",
+                "Man-Page": 13,
+                "Img": "./resources/imgs/Aboleth.PNG"
+            },
+            {
+                "Name": "Marid",
+                "Info": "Like a genie…but a frog also.",
+                "Man-Page": 146,
+                "Img": "./resources/imgs/Marid.PNG"
+            }
+        ]
     },
-    "Piercer": {
-        "Weight": 2,
-        "Info": "Gross.",
-        "Man-Page": 252,
-        "Img": "./resources/imgs/Piercer.PNG"
+
+    "Fucking Units": {
+        "weight": 2,
+        "contents": [
+            {
+                "Name": "Dragon Turtle",
+                "Info": "Big ol bitey boi.  Meme aside though, this is pretty much a dragon battle, so nut up or shut up.",
+                "Man-Page": 119,
+                "Img": "./resources/imgs/Dragon Turtle.PNG"
+            }
+        ]
     },
-    "Kraken": {
-        "Weight": 0.0435,
-        "Info": "Unlucky you.  Release the KRAKEN!",
-        "Man-Page": 197,
-        "Img": "./resources/imgs/Kraken.PNG"
-    },
-    "Marid": {
-        "Weight": 0.0909,
-        "Info": "Like a genie…but a frog also.",
-        "Man-Page": 146,
-        "Img": "./resources/imgs/Marid.PNG"
-    },
-    "Elemental": {
-        "Weight": 0.2,
-        "Info": "It’s all in the name bruddah.",
-        "Man-Page": 124,
-        "Img": "./resources/imgs/Elemental.PNG"
-    },
-    "Dragon Turtle": {
-        "Weight": 0.0588,
-        "Info": "Big ol bitey boi.  Meme aside though, this is pretty much a dragon battle, so nut up or shut up.",
-        "Man-Page": 119,
-        "Img": "./resources/imgs/Dragon Turtle.PNG"
-    },
-    "Behir": {
-        "Weight": 0.0909,
-        "Info": "Mid-range monsters will still rock your shit.",
-        "Man-Page": 25,
-        "Img": "./resources/imgs/Behir.PNG"
-    }
+
+    "Just Run": {
+        "weight": 1,
+        "contents": [
+            {
+                "Name": "Kraken",
+                "Info": "Unlucky you.  Release the KRAKEN!",
+                "Man-Page": 197,
+                "Img": "./resources/imgs/Kraken.PNG"
+            }
+        ]
+    }    
 }
