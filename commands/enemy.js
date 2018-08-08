@@ -8,6 +8,7 @@ module.exports = {
     description: 'produces a random enemy',
     usage: ['', '<area-name>'],
     authorizedUsers: [dungeon_master],
+    authorizedChannels:['enemies'],
     execute(message, args) {
         if(!args.length) {
             const data = [];

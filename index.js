@@ -34,6 +34,10 @@ client.on('message', message => {
     if(command.authorizedUsers && !command.authorizedUsers.includes(message.author.id)) {
         return message.reply('You are not authorized to use that command');
     }
+
+    if(command.authorizedChannels && !command.authorizedChannels.includes(message.channel.name)) {
+        return message.reply(`You can only execute this command in one of the following channels: ${command.authorizedChannels.join(', ')}`);
+    }
     
     if (command.args && !args.length) {
         let reply = 'You didn\'t provide any arguments! See the proper usages below:';
