@@ -5,23 +5,36 @@ module.exports = {
     usage: ['<die-size>', '<number-of-rolls>d<die-size>'],
     aliases: ['rol', 'nat20'],
 	execute(message, args) {
-        const arg = args[0];
+        let arg = args[0];
+        let modifier = 0;
+        let resMessage = '';
+        if(/^.*\+[0-9]+$/.test(arg)) {
+            const rollAndModifier = arg.split('+');
+            arg = rollAndModifier[0];
+            modifier = rollAndModifier[1];
+        }
         if (/^[0-9]+d[0-9]+$/.test(arg)){
             rollInfo = arg.split('d');
             numRolls = parseInt(rollInfo[0]);
             dieSize = parseInt(rollInfo[1]);
-            const res = Array.apply(null, {length: numRolls}).map((_) => {
+            const resRolls = Array.apply(null, {length: numRolls}).map((_) => {
                 return Math.floor(Math.random()*dieSize) + 1;;
             });
-            return message.channel.send(res.join(","));
+            resMessage = `rolled: ${resRolls.join(",")}`;
         } else {
-            const dieSize = parseInt(args[0]);
+            if(/^d[0-9]+$/.test(arg)) {
+                arg = arg.replace('d', '');
+            }
+            const dieSize = parseInt(arg);
             
             if (isNaN(dieSize)) {
                 return message.reply('Invalid roll');
             }
-
-            return message.channel.send(Math.floor(Math.random()*dieSize) + 1);
+            resMessage = `rolled ${Math.floor(Math.random()*dieSize) + 1}`;
         }
+        if(modifier > 0) {
+            resMessage += ` +${modifier}`;
+        }
+        return message.reply(resMessage);
     },
 };
