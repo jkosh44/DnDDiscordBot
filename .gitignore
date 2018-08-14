@@ -1,3 +1,4 @@
 config*
 notes.txt
+!resources/imgs/spongebob.png
 resources/imgs/*
