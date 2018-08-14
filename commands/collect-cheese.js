@@ -1,11 +1,11 @@
 module.exports = {
-    name: 'collect-poop',
-    description: 'collect\'s your poop',
-    usage: ['', '<max poops>'],
-    aliases: ['poop'],
+    name: 'collect-cheese',
+    description: 'collect\'s your cheese',
+    usage: ['', '<max cheese>'],
+    aliases: [''],
     authorizedUsers: ['259396529016537088'],
 	execute(message, args) {
-        const filter = m => m.content.includes('poop') && m.author.id == message.author.id;
+        const filter = m => m.content.includes('cheese') && m.author.id == message.author.id;
         
         let collector = null;
 
@@ -16,12 +16,12 @@ module.exports = {
         }
 
         collector.on('collect', m => {
-            m.react('💩')
-                .catch((e) => m.reply('Looks like I\'m constipated: '+e));
+            m.react('🧀')
+                .catch((e) => m.reply('Looks like I\'m lactose intolerant: '+e));
         });
 
         collector.on('end', collected => {
-            message.channel.send(`I pooped ${collected.size} times!`);
+            message.channel.send(`I've cheesed ${collected.size} times!`);
         });
     },
 };
