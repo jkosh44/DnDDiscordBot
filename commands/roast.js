@@ -35,7 +35,7 @@ function drawSpongebob(message) {
       drawMemeOnCanvas(canvas, ctx, spongeText, '', spongebob);
       
       const attachment = new Discord.Attachment(canvas.toBuffer(), 'roast.png');
-      message.mentions.users.first().send('', attachment);
+      //message.mentions.users.first().send('', attachment);
       message.channel.send('', attachment);
     }
     catch(e) {
