@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
+const { Manual } = require('./db/man-db.js');
 const { prefix, token } = require('./config.json');
 
 const client = new Discord.Client();
@@ -13,6 +14,7 @@ for (const file of commandFiles) {
 }
 
 client.on('ready', () => {
+    Manual.sync();
     console.log('Ready!');
 });
 
