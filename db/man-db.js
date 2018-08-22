@@ -58,7 +58,6 @@ async function getAllManEntries(master) {
 }
 
 async function updateManEntry(name, desc, master) {
-    //TODO: this is succeeding even when the entry doesn't exist, but it doesn't do anythin
     const affectedRows = await Manual.update({entry_description: desc}, {where: {entry_name: name, master: master}});
     if(affectedRows > 0) {
         return true;
