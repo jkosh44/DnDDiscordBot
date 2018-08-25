@@ -29,7 +29,7 @@ function drawSpongebob(message) {
         }
       }
       
-      const spongebob = await Canvas.loadImage('/home/joe/GitHubProjects/DnDDiscordBot/resources/imgs/spongebob.png');
+      const spongebob = await Canvas.loadImage('./resources/imgs/spongebob.png');
       const canvas = Canvas.createCanvas(spongebob.width, spongebob.height);
       const ctx = canvas.getContext('2d');
       drawMemeOnCanvas(canvas, ctx, spongeText, '', spongebob);
