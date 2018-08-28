@@ -3,7 +3,6 @@ const { ManDb } = require('../db/man-db.js');
 const { dungeon_master } = require('../config.json');
 
 class Manual {
-    _notEnoughArgs = 'Not enough arguments provide. Use the help command to see proper usages of this command';
     
     constructor(manName, commandName, master) {
         this.manName = manName;
@@ -14,7 +13,7 @@ class Manual {
     async add(message, args) {
         if(isAuthorized(message)){
             if(args.length < 3) {
-                return message.reply(this._notEnoughArgs);
+                return message.reply('Not enough arguments provide. Use the help command to see proper usages of this command');
             }
             const newEntry = await ManDb.addManEntry(args[1], args.slice(2).join(' '), this.master);
             if(newEntry === null) {
@@ -74,7 +73,7 @@ class Manual {
     async updateEntry(message, args) {
         if(isAuthorized(message)) {
             if(args.length < 3) {
-                return message.reply(this._notEnoughArgs);
+                return message.reply('Not enough arguments provide. Use the help command to see proper usages of this command');
             }
             const updateSuccess = await ManDb.updateManEntry(args[1], args.slice(2).join(' '), this.master);
             if(updateSuccess) {

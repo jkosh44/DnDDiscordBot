@@ -1,13 +1,5 @@
 const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize('database', 'user', 'password', {
-    host: 'localhost',
-    dialect: 'sqlite',
-    logging: false,
-    operatorsAliases: false,
-    // SQLite only
-    storage: 'database.sqlite',
-});
+const {sequelize} = require('./db.js');
 
 const Manual = sequelize.define('manual', {
     entry_name: {
