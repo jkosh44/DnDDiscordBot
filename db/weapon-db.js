@@ -1,36 +1,4 @@
-const Sequelize = require('sequelize');
-const {sequelize} = require('./db.js');
-
-const Weapon = sequelize.define('weapon', {
-    weapon_id : {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    weapon_name: {
-        type: Sequelize.STRING,
-    },
-    hit: {
-        type: Sequelize.INTEGER
-    },
-    num_of_attacks: {
-        type: Sequelize.INTEGER
-    },
-    damage: {
-        type: Sequelize.STRING
-    },
-    range: {
-        type: Sequelize.INTEGER
-    },
-    weapon_type: {
-        type: Sequelize.STRING,
-        allowNull: true
-    }, 
-    notes: {
-        type: Sequelize.STRING,
-        allowNull: true
-    }
-});
+const {Weapon} = require('./Schema.js');
 
 async function getWeaponById(weapon_id) {
     return await Weapon.findById(weapon_id);

@@ -1,21 +1,4 @@
-const Sequelize = require('sequelize');
-const {sequelize} = require('./db.js');
-
-const Manual = sequelize.define('manual', {
-    entry_name: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
-    },
-    entry_description: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    },
-    master: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-    },
-});
+const {Manual} = require('./schema.js');
 
 async function addManEntry(name, desc, master) {
     try{
@@ -66,7 +49,6 @@ async function deleteManEntry(name, master) {
 }
 
 module.exports = {
-    Manual,
     ManDb: {
         addManEntry,
         getManEntry,

@@ -1,16 +1,4 @@
-const Sequelize = require('sequelize');
-const {sequelize} = require('./db.js');
-
-const Ability = sequelize.define('ability', {
-    ability_id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    ability_description: {
-        type: Sequelize.STRING
-    },
-});
+const {Ability} = require('./Schema.js');
 
 async function addAbility(description) {
     try {
@@ -32,8 +20,4 @@ async function getAbilityById(ability_id) {
 
 async function getAbilityByDesc(ability_description) {
     return await Ability.findOne({where: {ability_description: ability_description}});
-}
-
-module.export = {
-    Ability
 }

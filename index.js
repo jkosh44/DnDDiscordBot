@@ -1,7 +1,9 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { Manual } = require('./db/man-db.js');
+const { Ability, Armor, Character, CharacterAbilityScore, Feature, 
+    Item, Manual, Skill, Spell, Weapon, sequelize } = require('./db/schema.js');
 const { prefix, token } = require('./config.json');
+
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -14,7 +16,17 @@ for (const file of commandFiles) {
 }
 
 client.on('ready', () => {
+    Ability.sync();
+    CharacterAbilityScore.sync();
+    Armor.sync();
+    Character.sync();
+    Feature.sync();
+    Item.sync();
     Manual.sync();
+    Skill.sync();
+    Spell.sync();
+    Weapon.sync();
+    sequelize.sync();
     console.log('Ready!');
 });
 

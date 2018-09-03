@@ -1,19 +1,4 @@
-const Sequelize = require('sequelize');
-const {sequelize} = require('./db.js');
-
-const Item = sequelize.define('item', {
-    item_id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    item_name: {
-        type: Sequelize.STRING
-    },
-    item_description: {
-        type: Sequelize.STRING
-    }
-});
+const {Item} = require('./Schema.js');
 
 async function getItemById(item_id) {
     return await Item.findById(item_id);
