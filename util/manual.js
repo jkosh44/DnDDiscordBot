@@ -106,10 +106,6 @@ function isAuthorized(message) {
     }
 }
 
-function validateArgLength(args, length) {
-
-}
-
 module.exports = {
     Manual
 }
