@@ -21,3 +21,11 @@ async function getAbilityById(ability_id) {
 async function getAbilityByDesc(ability_description) {
     return await Ability.findOne({where: {ability_description: ability_description}});
 }
+
+module.exports = {
+    AbilityDb: {
+        addAbility,
+        getAbilityById,
+        getAbilityByDesc
+    }
+}

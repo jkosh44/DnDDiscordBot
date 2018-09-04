@@ -2,6 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { sequelize } = require('./db/schema.js');
 const { prefix, token } = require('./config.json');
+const { initDb } = require('./util/initDb.js');
 
 
 const client = new Discord.Client();
@@ -14,8 +15,9 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-client.on('ready', () => {
-    sequelize.sync();
+client.on('ready', async () => {
+    await sequelize.sync();
+    await initDb();
     console.log('Ready!');
 });
 
