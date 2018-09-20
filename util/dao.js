@@ -1,0 +1,33 @@
+const { getDbSchema } = require('../db/schema.js');
+
+let schema;
+
+async function initSchema() {
+    schema = await getDbSchema();
+}
+
+async function sync() {
+    return await schema.sequelize.sync();
+}
+
+function getAbilityTable() {
+    return schema.Ability;
+}
+
+function getSkillTable() {
+    return schema.Skill;
+}
+
+function getCharacterTable() {
+    return schema.Character;
+}
+
+module.exports = {
+    dao: {
+        initSchema,
+        sync,
+        getAbilityTable,
+        getCharacterTable,
+        getSkillTable
+    }
+}

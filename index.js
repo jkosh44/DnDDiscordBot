@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { sequelize } = require('./db/schema.js');
 const { prefix, token } = require('./config.json');
+const { dao } = require('./util/dao.js');
 const { initDb } = require('./util/initDb.js');
 
 
@@ -16,7 +16,8 @@ for (const file of commandFiles) {
 }
 
 client.on('ready', async () => {
-    await sequelize.sync();
+    await dao.initSchema();
+    await dao.sync();
     await initDb();
     console.log('Ready!');
 });

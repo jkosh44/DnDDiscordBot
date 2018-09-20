@@ -1,5 +1,4 @@
-const {Ability} = require('../db/schema.js');
-const {Skill} = require('../db/schema.js');
+const { dao } = require('./dao.js');
 
 async function initDb() {
     findOrCreate('Str', [
@@ -34,13 +33,15 @@ async function initDb() {
 }
 
 async function findOrCreate(desc, skills) {
-    const count = await Ability.count({where: {ability_description: desc}});
+    const abilityTable = dao.getAbilityTable();
+    const skillTable = dao.getSkillTable();
+    const count = await abilityTable.count({where: {ability_description: desc}});
     if(count === 0) {
-        await Ability.create({
+        await abilityTable.create({
             ability_description: desc,
             skills: skills
         }, {
-            include: [Skill]
+            include: [skillTable]
         });
     }
 }
