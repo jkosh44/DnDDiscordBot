@@ -31,7 +31,11 @@ class Manual {
             if(entry !== null) {
                 data.push(`**${entry.entry_name}:**`);
                 data.push(`${entry.entry_description}`);
-                message.channel.send(data, {split: true});
+                if(this.entry_type === 'Master') {
+                    message.author.send(data, {split: true});
+                } else {
+                    message.channel.send(data, {split: true});
+                }
             }
             else {
                 return message.reply(`There was a problem getting that ${this.manName} entry, are you sure it exists?\nUse ${prefix}${this.commandName} to see all entries`);
