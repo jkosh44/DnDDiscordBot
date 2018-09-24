@@ -22,12 +22,17 @@ function getCharacterTable() {
     return schema.Character;
 }
 
+function getManualTable() {
+    return schema.Manual;
+}
+
 module.exports = {
     dao: {
         initSchema,
         sync,
         getAbilityTable,
         getCharacterTable,
-        getSkillTable
+        getSkillTable,
+        getManualTable
     }
 }

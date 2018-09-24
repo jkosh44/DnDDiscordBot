@@ -4,10 +4,10 @@ const { dungeon_master } = require('../config.json');
 module.exports = {
     name: 'master',
     description: 'Direct messages the Dungeon Master some private info about the campaign',
-    usage: ['<entry-name>', ''],
+    usage: ['', '<entry-name>', 'add <entry-name> <description>', 'update <entry-name> <new-description>', 'del <entry-name>'],
     authorizedUsers: [dungeon_master],
 	execute(message, args) {
-        const manual = new Manual('Master Manual', 'master', true);
+        const manual = new Manual('Master Manual', 'master', 'Master');
         if(args.length) {
             switch(args[0]) {
                 case 'add':

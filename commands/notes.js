@@ -1,11 +1,12 @@
 const { Manual } = require('../util/manual.js');
+const { dungeon_master } = require('../config.json');
 
 module.exports = {
-    name: 'man',
-    description: 'Direct messages info about the campaign',
+    name: 'notes',
+    description: 'Direct messages the Dungeon Master some private info about the campaign',
     usage: ['', '<entry-name>', 'add <entry-name> <description>', 'update <entry-name> <new-description>', 'del <entry-name>'],
-    async execute(message, args) {
-        const manual = new Manual('Manual', 'man', 'Manual');
+    execute(message, args) {
+        const manual = new Manual('Notes', 'master', 'Notes');
         if(args.length) {
             switch(args[0]) {
                 case 'add':

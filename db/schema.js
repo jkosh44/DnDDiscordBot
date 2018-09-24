@@ -122,15 +122,14 @@ async function getDbSchema() {
             sequelize.define('manual', {
                 entry_name: {
                     type: Sequelize.INTEGER,
-                    allowNull: false,
-                    unique: true,
+                    allowNull: false
                 },
                 entry_description: {
                     type: Sequelize.INTEGER,
                     allowNull: false,
                 },
-                master: {
-                    type: Sequelize.BOOLEAN,
+                entry_type: {
+                    type: Sequelize.ENUM('Master', 'Manual', 'Notes'),
                     allowNull: false,
                 },
             }),
