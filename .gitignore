@@ -2,3 +2,4 @@ config*
 notes.txt
 resources/imgs/*
 !resources/imgs/spongebob.png
+database.sqlite
