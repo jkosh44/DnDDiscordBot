@@ -82,14 +82,14 @@ async function getDbSchema() {
                 class: {
                     type: Sequelize.STRING
                 },
-                initiation_bonus: {
+                base_hit_points: {
                     type: Sequelize.INTEGER
                 },
-                hit_points: {
+                armor_worn_armor_class: {
                     type: Sequelize.INTEGER
                 },
-                armor_class: {
-                    type: Sequelize.INTEGER
+                armor_worn_type: {
+                    type: Sequelize.ENUM('H', 'M', 'L')
                 },
                 character_bio: {
                     type: Sequelize.STRING

@@ -13,9 +13,9 @@ async function createCharacter(characterData){
         weight: characterData.weight,
         background: characterData.background,
         class: characterData.class,
-        initiation_bonus: characterData.initiation_bonus,
-        hit_points: characterData.hit_points,
-        armor_class: characterData.armor_class,
+        base_hit_points: characterData.base_hit_points,
+        armor_worn_armor_class: characterData.armor_worn_armor_class,
+        armor_worn_type: characterData.armor_worn_type,
         character_bio: characterData.character_bio,
     });
 }
@@ -27,6 +27,7 @@ async function characterExists(user_id) {
 
 module.exports = {
     characterDb: {
-        createCharacter
+        createCharacter,
+        characterExists
     }
 }

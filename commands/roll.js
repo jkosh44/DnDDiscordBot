@@ -4,7 +4,8 @@ module.exports = {
     args: true,
     usage: ['<die-size>', '<number-of-rolls>d<die-size>'],
     aliases: ['rol', 'nat20'],
-	execute(message, args) {
+    authorizedChannels:['general'],
+    execute(message, args) {
         let arg = args[0];
         let modifier = 0;
         let resMessage = '';

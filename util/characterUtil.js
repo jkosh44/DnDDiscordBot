@@ -1,8 +1,13 @@
 const { characterDb } = require('../db/character-db.js');
 const { dao } = require('./dao.js');
 
+function prettyPrint(characterId) {
+    
+} 
+
 async function createCharacter(characterInfo, abilityScores) {
     const char = await characterDb.createCharacter(characterInfo);
+    console.log(`created character for user: ${characterInfo.user_id}`);
     [str, dex, con, int, wis, cha] = await Promise.all([
         getAbility('Str'), getAbility('Dex'), getAbility('Con'), getAbility('Int'), getAbility('Wis'), getAbility('Cha')
     ]); 
@@ -12,6 +17,11 @@ async function createCharacter(characterInfo, abilityScores) {
     await char.addAbility(int, {through: {ability_score: abilityScores.int}});
     await char.addAbility(wis, {through: {ability_score: abilityScores.wis}});
     await char.addAbility(cha, {through: {ability_score: abilityScores.cha}});
+    console.log(`added ability scores to user: ${characterInfo.user_id}`);
+}
+
+async function characterExists(userId) {
+    return await characterDb.characterExists(userId);
 }
 
 async function getAbility(abilityName) {
@@ -19,5 +29,8 @@ async function getAbility(abilityName) {
 }
 
 module.exports = {
-    createCharacter
+    characterUtil: {
+        createCharacter,
+        characterExists
+    }
 }
