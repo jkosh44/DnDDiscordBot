@@ -10,7 +10,7 @@ async function getDbSchema() {
         storage: 'database.sqlite',
     });
 
-    [Ability, Armor, CharacterAbilityScore, Character, Feature, Item, Manual, Proficiency, Skill, Spell, Weapon] = 
+    [Ability, Armor, CharacterAbilityScore, CharacterArmorMap, Character, Feature, Item, Manual, Proficiency, Skill, Spell, Weapon] = 
         await Promise.all([    
             sequelize.define('ability', {
                 ability_id: {
@@ -33,7 +33,7 @@ async function getDbSchema() {
                     type: Sequelize.STRING
                 },
                 armor_type: {
-                    type: Sequelize.STRING,
+                    type: Sequelize.ENUM('L', 'M', 'H'),
                     allowNull: true
                 },
                 armor_class: {
@@ -46,7 +46,13 @@ async function getDbSchema() {
                     type: Sequelize.INTEGER
                 }
             }),
-                    
+               
+            sequelize.define('characterArmorMap', {
+                currently_worn: {
+                    type: Sequelize.BOOLEAN
+                }
+            }),
+
             sequelize.define('character', {
                 user_id: {
                     type: Sequelize.INTEGER,
@@ -73,6 +79,12 @@ async function getDbSchema() {
                 hair: {
                     type: Sequelize.STRING
                 },
+                eyes: {
+                    type: Sequelize.STRING
+                },
+                height: {
+                    type: Sequelize.STRING
+                },
                 weight: {
                     type: Sequelize.STRING
                 },
@@ -84,12 +96,6 @@ async function getDbSchema() {
                 },
                 base_hit_points: {
                     type: Sequelize.INTEGER
-                },
-                armor_worn_armor_class: {
-                    type: Sequelize.INTEGER
-                },
-                armor_worn_type: {
-                    type: Sequelize.ENUM('H', 'M', 'L')
                 },
                 character_bio: {
                     type: Sequelize.STRING
@@ -258,15 +264,16 @@ async function getDbSchema() {
         Character.belongsToMany(Ability, {through: 'characterAbilityScore'}),
         Ability.belongsToMany(Character, {through: 'characterAbilityScore'}),
 
-        Character.belongsToMany(Armor, {through: 'characterArmor'}),
-        Armor.belongsToMany(Character, {through: 'characterArmor'}),
+        Character.belongsToMany(Armor, {through: 'characterArmorMap'}),
+        Armor.belongsToMany(Character, {through: 'characterArmorMap'}),
     ]);
 
     return {
         sequelize,
         Ability, 
         Armor, 
-        CharacterAbilityScore, 
+        CharacterAbilityScore,
+        CharacterArmorMap, 
         Character, 
         Feature, 
         Item, 

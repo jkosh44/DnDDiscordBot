@@ -1,8 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
-const { dao } = require('./util/dao.js');
-const { initDb } = require('./util/initDb.js');
+const { dao } = require('./db/dao');
 
 
 const client = new Discord.Client();
@@ -18,7 +17,7 @@ for (const file of commandFiles) {
 client.on('ready', async () => {
     await dao.initSchema();
     await dao.sync();
-    await initDb();
+    await dao.initDb();
     console.log('Ready!');
 });
 

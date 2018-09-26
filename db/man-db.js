@@ -1,4 +1,4 @@
-const { dao } = require('../util/dao.js');
+const { dao } = require('./dao.js');
 
 async function addManEntry(name, desc, entry_type) {
     try{
