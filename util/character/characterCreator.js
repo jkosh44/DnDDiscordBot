@@ -13,6 +13,8 @@ async function getCharacterInfo(user, message) {
             const lvl = await promptForAnswer(user, 'What is your chracters starting level?', message, 
                 m => messageIsNumber(message, m), r => parseInt(r));
             const race = await promptForAnswer(user, 'What is your characters race?', message);
+            const gender = await promptForAnswer(user, 'What is your gender?', message);
+            const diety = await promptForAnswer(user, 'What is your diety', message);
             const alignmentLVC = await promptForAnswer(user, 'Is your character Lawful, Nuetral, or Chaotic?', message,
                 m => checkUserId(m, message) && ['lawful', 'nuetral', 'chaotic'].includes(m.content.toLowerCase()));
             const alignmentEVG = await promptForAnswer(user, 'Is your character Good, Nuetral, or Evil?', message,
@@ -103,6 +105,8 @@ async function getCharacterInfo(user, message) {
                     character_name: name,
                     level: lvl,
                     race: race,
+                    gender: gender,
+                    diety: diety,
                     alignment_lvc: alignmentLVC,
                     alignment_evg: alignmentEVG,
                     size: size,
@@ -181,7 +185,6 @@ async function createCharacter(characterInfo, abilityScores, armor, proficiencie
     for(var i=0; i<proficiencies.length; i++) {
         const proficiencyDescription = proficiencies[i];
         const skill = await skillDb.getSkillByDescription(proficiencyDescription);
-        console.log(skill.get({plain: true}));
         await char.addSkill(skill);
     }
     console.log(`added skill proficiencies to user: ${characterInfo.user_id}`);

@@ -70,11 +70,17 @@ async function getDbSchema() {
                 race: {
                     type: Sequelize.STRING
                 },
+                gender: {
+                    type: Sequelize.STRING
+                },
                 alignment_lvc: {
                     type: Sequelize.ENUM('Lawful', 'Nuetral', 'Choatic')
                 },
                 alignment_evg: {
                     type: Sequelize.ENUM('Evil', 'Nuetral', 'Good')
+                },
+                diety: {
+                    type: Sequelize.STRING
                 },
                 size: {
                     type: Sequelize.STRING
