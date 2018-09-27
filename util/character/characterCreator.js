@@ -1,6 +1,8 @@
 const { promptForAnswer, promptForAnswerWithChoices, checkUserId, messageIsNumber } = require('../userResponse.js');
 const { characterDb } = require('../../db/character-db.js');
 const { abilityDb } = require('../../db/ability-db.js');
+const { armorDb } = require('../../db/armor-db.js');
+const { skillDb } = require('../../db/skill-db.js');
 const { dao } = require('../../db/dao.js');
 
 async function getCharacterInfo(user, message) {
@@ -150,7 +152,7 @@ async function getCharacterInfo(user, message) {
     });
 }
 
-async function createCharacter(characterInfo, abilityScores, armor) {
+async function createCharacter(characterInfo, abilityScores, armor, proficiencies) {
     const char = await characterDb.createCharacter(characterInfo);
     console.log(`created character for user: ${characterInfo.user_id}`);
     [str, dex, con, int, wis, cha] = await Promise.all([
@@ -159,27 +161,30 @@ async function createCharacter(characterInfo, abilityScores, armor) {
         abilityDb.getAbilityByDesc('Wis'), abilityDb.getAbilityByDesc('Cha')
     ]); 
     await Promise.all([
-        char.addAbility(str, {through: {ability_score: abilityScores.str}}),
-        char.addAbility(dex, {through: {ability_score: abilityScores.dex}}),
-        char.addAbility(con, {through: {ability_score: abilityScores.con}}),
-        char.addAbility(int, {through: {ability_score: abilityScores.int}}),
-        char.addAbility(wis, {through: {ability_score: abilityScores.wis}}),
-        char.addAbility(cha, {through: {ability_score: abilityScores.cha}})
+        char.addAbility(str, {through: {ability_score: abilityScores.str.score, saving_throw: abilityScores.str.savingThrow}}),
+        char.addAbility(dex, {through: {ability_score: abilityScores.dex.score, saving_throw: abilityScores.dex.savingThrow}}),
+        char.addAbility(con, {through: {ability_score: abilityScores.con.score, saving_throw: abilityScores.con.savingThrow}}),
+        char.addAbility(int, {through: {ability_score: abilityScores.int.score, saving_throw: abilityScores.int.savingThrow}}),
+        char.addAbility(wis, {through: {ability_score: abilityScores.wis.score, saving_throw: abilityScores.wis.savingThrow}}),
+        char.addAbility(cha, {through: {ability_score: abilityScores.cha.score, saving_throw: abilityScores.cha.savingThrow}})
     ]);
-    dao.sync();
     console.log(`added ability scores to user: ${characterInfo.user_id}`);
-    //TODO
-    // if(armor) {
-    //     console.log(armor);
-    //     const storedArmor =  await armorDb.findOrCreateArmor({
-    //         armor_name: armor.armor_name,
-    //         armor_type: armor.armor_type,
-    //         armor_class: armor.armor_class
-    //     });
-    //     console.log(storedArmor);
-    //     await char.addArmor(storedArmor, {through: {currently_worn: true}});
-    // }
-    // dao.sync();
+    if(armor) {
+        const [storedArmor, created] =  await armorDb.findOrCreateArmor({
+            armor_name: armor.armor_name,
+            armor_type: armor.armor_type,
+            armor_class: armor.armor_class
+        });
+        await char.addArmor(storedArmor, {through: {currently_worn: true}});
+        console.log(`added armor to user: ${characterInfo.user_id}`);
+    }
+    for(var i=0; i<proficiencies.length; i++) {
+        const proficiencyDescription = proficiencies[i];
+        const skill = await skillDb.getSkillByDescription(proficiencyDescription);
+        char.addSkill(skill);
+    }
+    console.log(`added proficiencies to user: ${characterInfo.user_id}`);
+    dao.sync();
 }
 
 async function characterExists(user_id) {

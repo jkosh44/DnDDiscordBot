@@ -22,12 +22,24 @@ function getCharacterTable() {
     return schema.Character;
 }
 
+function getItemTable() {
+    return schema.Item;
+}
+
 function getManualTable() {
     return schema.Manual;
 }
 
 function getSkillTable() {
     return schema.Skill;
+}
+
+function getSpellTable() {
+    return schema.Spell;
+}
+
+function getWeaponTable() {
+    return schema.Weapon;
 }
 
 async function initDb() {
@@ -82,9 +94,12 @@ module.exports = {
         initDb,
         sync,
         getAbilityTable,
+        getArmorTable,
         getCharacterTable,
+        getItemTable,
         getManualTable,
         getSkillTable,
-        getArmorTable
+        getSpellTable,
+        getWeaponTable
     }
 }

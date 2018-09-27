@@ -1,17 +1,17 @@
-const {Spell} = require('./Schema.js');
+const { dao } = require('./dao.js');
 
 async function getSpellById(spell_id) {
-    return await Spell.findById(spell_id);
+    return await dao.getSpellTable().findById(spell_id);
 }
 
 async function getSpellByName(spell_name) {
-    return await Spell.findOne({
-        spell_name: spell_name
+    return await dao.getSpellTable().findOne({
+        where: {spell_name: spell_name}
     });
 }
 
 async function addSpell(id, name, lvl, school, cast_time, rng, effect, saveAtk, duration, conc, ritual, comp, cost) {
-    return await Spell.create({
+    return await dao.getSpellTable().create({
         spell_id: id,
         spell_name: name,
         level: lvl,

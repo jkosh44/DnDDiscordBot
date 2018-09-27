@@ -44,10 +44,13 @@ async function getDbSchema() {
             sequelize.define('characterAbilityScore', {
                 ability_score: {
                     type: Sequelize.INTEGER
+                },
+                saving_throw: {
+                    type: Sequelize.BOOLEAN
                 }
             }),
                
-            sequelize.define('characterArmorMap', {
+            sequelize.define('characterArmor', {
                 currently_worn: {
                     type: Sequelize.BOOLEAN
                 }
@@ -264,8 +267,11 @@ async function getDbSchema() {
         Character.belongsToMany(Ability, {through: 'characterAbilityScore'}),
         Ability.belongsToMany(Character, {through: 'characterAbilityScore'}),
 
-        Character.belongsToMany(Armor, {through: 'characterArmorMap'}),
-        Armor.belongsToMany(Character, {through: 'characterArmorMap'}),
+        Character.belongsToMany(Skill, {through: 'characterSkillProficiency'}),
+        Skill.belongsToMany(Character, {through: 'characterSkillProficiency'}),
+
+        Character.belongsToMany(Armor, {through: 'characterArmor'}),
+        Armor.belongsToMany(Character, {through: 'characterArmor'}),
     ]);
 
     return {
