@@ -26,6 +26,8 @@ async function getCharacterInfo(user, message) {
             const weight = await promptForAnswer(user, 'What is your characters weight', message);
             const background = await promptForAnswer(user, 'What is your characters background', message);
             const className = await promptForAnswer(user, 'What is your characters class', message);
+            const hitDice = await promptForAnswer(user, 'What is you class\' hit dice?', message, 
+                m => messageIsNumber(message, m), r=>parseInt(r));
             const baseHitPoints = await promptForAnswer(user, 'What is your characters base hit points? (Can be found under the Classes section of your character sheet.)', message,
                 m => messageIsNumber(message, m), r=>parseInt(r));
             const isWearingArmor = await promptForAnswer(user, 'Are you currently wearing armor (y/n)?', message, 
@@ -116,6 +118,7 @@ async function getCharacterInfo(user, message) {
                     weight: weight,
                     background: background,
                     class: className,
+                    hit_dice: hitDice,
                     base_hit_points: baseHitPoints,
                     character_bio: characterBio,
                 },

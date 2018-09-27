@@ -42,6 +42,7 @@ module.exports = {
         //       weight: 'heavy',
         //       background: 'old',
         //       class: 'gnome',
+        //       hit_dice: 8,
         //       base_hit_points: 24,
         //       character_bio: 'biog' };
         //    const abilityScores = 

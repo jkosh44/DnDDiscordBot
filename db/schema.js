@@ -103,6 +103,9 @@ async function getDbSchema() {
                 class: {
                     type: Sequelize.STRING
                 },
+                hit_dice: {
+                    type: Sequelize.INTEGER
+                },
                 base_hit_points: {
                     type: Sequelize.INTEGER
                 },
