@@ -249,8 +249,11 @@ async function getDbSchema() {
         Ability.belongsToMany(Skill, {through: 'skillAbility'}),
         Skill.belongsToMany(Ability, {through: 'skillAbility'}),
 
-        Character.hasMany(Feature),
-        Character.hasMany(Proficiency),
+        Character.belongsToMany(Feature, {through: 'characterFeature'}),
+        Feature.belongsToMany(Character, {through: 'characterFeature'}),
+        
+        Character.belongsToMany(Proficiency, {through: 'characterProficiency'}),
+        Proficiency.belongsToMany(Character, {through: 'characterProficiency'}),
 
         Weapon.belongsTo(Character, {through: 'characterWeapon'}),
         Character.belongsToMany(Weapon, {through: 'characterWeapon'}),
@@ -258,8 +261,8 @@ async function getDbSchema() {
         Spell.belongsToMany(Character, {through: 'characterSpell'}),
         Character.belongsToMany(Spell, {through: 'characterSpell'}),
 
-        Skill.belongsToMany(Character, {through: 'characterProficiencySkill'}),
-        Character.belongsToMany(Skill, {through: 'characterProficiencySkill'}),
+        Skill.belongsToMany(Character, {through: 'characterSkillProficiency'}),
+        Character.belongsToMany(Skill, {through: 'characterSkillProficiency'}),
 
         Item.belongsToMany(Character, {through: 'characterItem'}),
         Character.belongsToMany(Item, {through: 'characterItem'}),

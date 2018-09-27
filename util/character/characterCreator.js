@@ -181,10 +181,12 @@ async function createCharacter(characterInfo, abilityScores, armor, proficiencie
     for(var i=0; i<proficiencies.length; i++) {
         const proficiencyDescription = proficiencies[i];
         const skill = await skillDb.getSkillByDescription(proficiencyDescription);
-        char.addSkill(skill);
+        console.log(skill.get({plain: true}));
+        await char.addSkill(skill);
     }
-    console.log(`added proficiencies to user: ${characterInfo.user_id}`);
-    dao.sync();
+    console.log(`added skill proficiencies to user: ${characterInfo.user_id}`);
+    await dao.sync();
+    return;
 }
 
 async function characterExists(user_id) {

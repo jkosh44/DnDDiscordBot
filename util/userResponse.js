@@ -11,15 +11,8 @@ async function promptForAnswer(user, prompt, message, filter=m => checkUserId(m,
                 return response[0];
             }
         } else {
-            return promptForAnswer(user, prompt, message, filter, map);
+            return promptForAnswer(user, prompt, message, filter, map, max);
         }
-        // const response = map(collected.first().content);
-        // const confirm = await confirmAnswer(response, promptMessage.channel, user);
-        // if(confirm) {
-        //     return response;
-        // } else {
-        //     return promptForAnswer(user, prompt, message, filter, map);
-        // }
     } else {
         throw 'Character creation timed out';
     }

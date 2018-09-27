@@ -1,6 +1,8 @@
-async function characterPrint(character_id) {
-    //TODO: make pretty and finish
-    const character = await characterDb.getCharacter(character_id);
+const { characterDb } = require('../../db/character-db.js');
+
+async function plainPrint(characterId) {
+    //TODO
+    const character = await characterDb.getCharacterById(characterId);
     data = [];
     data.push(`Name: ${character.character_name}`);
     data.push(`Level: ${character.level}`);
@@ -13,12 +15,18 @@ async function characterPrint(character_id) {
     data.push(`Height: ${character.height}`);
     data.push(`Weight: ${character.weight}`);
     data.push(`Background: ${character.background}`);
-    console.log(character);
-    const abilities = await character.getAbilities();
-    console.log(abilities);
-
+    const abilities = character.getAbilities();
+    data.push(`**Ability Scores and Saving Throws**`);
+    
 }
 
 function prettyPrint(characterId) {
     
 } 
+
+module.exports = {
+    characterPrinter: {
+        plainPrint,
+        prettyPrint
+    }
+}
