@@ -10,8 +10,10 @@ module.exports = {
         const user = message.author;
         const userExists = await characterCreator.characterExists(user.id);
         if(userExists){
-            const data = await characterPrinter.plainPrint(user.id);
-            user.send(data, { split: true });
+            // const data = await characterPrinter.plainPrint(user.id);
+            const data = await characterPrinter.prettyPrint(user.id);
+            // user.send(data, { split: true });
+            user.send(data);
         } else {
             try {
                 const char = await characterCreator.getCharacterInfo(user, message); 
@@ -46,12 +48,12 @@ module.exports = {
         //       base_hit_points: 24,
         //       character_bio: 'biog' };
         //    const abilityScores = 
-        //     { str: { score: 1, savingThrow: true },
-        //       dex: { score: 2, savingThrow: false },
-        //       con: { score: 3, savingThrow: false },
-        //       int: { score: 4, savingThrow: false },
-        //       wis: { score: 5, savingThrow: true },
-        //       cha: { score: 6, savingThrow: false } };
+        //     { str: { score: 13, savingThrow: true },
+        //       dex: { score: 12, savingThrow: false },
+        //       con: { score: 14, savingThrow: false },
+        //       int: { score: 15, savingThrow: false },
+        //       wis: { score: 10, savingThrow: true },
+        //       cha: { score: 9, savingThrow: false } };
         //    const armor = { armor_name: 'chain', armor_class: 12, armor_type: 'M' };
         //    const proficiencies = [ 'Intimidation', 'Persuasion', 'Investigation' ];
         //    characterCreator.createCharacter(characterInfo, abilityScores, armor, proficiencies);
