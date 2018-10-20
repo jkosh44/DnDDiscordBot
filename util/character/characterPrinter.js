@@ -52,7 +52,7 @@ async function prettyPrint(characterId) {
         .setColor('#0099ff')
         .setTitle('Character Name')
         .setAuthor('Character Sheet', 'attachment://logo.png')
-        .setDescription(character.character_name)
+        .setDescription(character.name)
         .setThumbnail('attachment://thumbnail.png')
         .addField('Level', character.level, true)
         .addField('Race', character.race, true)
@@ -83,22 +83,18 @@ async function prettyPrint(characterId) {
     embed.addField('Saving Throws', savingThrows, true)
         .addBlankField()
 
-    let className = character.class;
-    let lvl = `${character.level}`;
-    let hitDice = character.currentHitDice;
-    let hp = `${character.baseHp}`;
-    let con = `${character.con}`;
-    let classHeader = '';
-    makeClassChart('Name', classHeader, className);
-    makeClassChart('Lvl', classHeader, lvl);
-    const classData = `${className}|${lvl}|${hitDice}|${hp}|${con}`;
-    const classTable = `${classHeader}\n${classData}`;
-    embed.addField('Class', classTable);
-    //TODO classes and init
+    const {header:classHeader, value:classValue} = makeClassChart('Name', character.class);
+    const {header:levelHeader, value:levelValue} = makeClassChart('Level', character.level.toString());
+    const {header:hitDiceHeader, value:hitDiceValue} = makeClassChart('Hit Dice', character.currentHitDice);
+    const {header:hpHeader, value:hpValue} = makeClassChart('HP', character.baseHp);
+    const {header:conHeader, value:conValue} = makeClassChart('Con', character.con);
+    const classTableHeader = `${classHeader}|${levelHeader}|${hitDiceHeader}|${hpHeader}|${conHeader}`;
+    const classTableValue = `${classValue}|${levelValue}|${hitDiceValue}|${hpValue}|${conValue}`;
+    embed.addField('Class', `${classTableHeader}\n${classTableValue}`, true);
+    embed.addField('Init', `+${character.init}`, true);
 
     embed.addBlankField()
-    embed.setFooter('Araya LLC')
-        ;
+    embed.setFooter('Araya LLC');
     return embed;
 
     
@@ -151,16 +147,29 @@ async function prettyPrint(characterId) {
     return data;
 } 
 
-function makeClassChart(headerText, classHeader, actualText) {
-    let buffer = (actualText.length-headerText.length)/2;
-    if(buffer>0) {
-        classHeader += '\\_'.repeat(buffer) + `**${headerText}**` + '\\_'.repeat(buffer) +'|';
-    } else if(buffer<0) {
-        classHeader += `**${headerText}**|`;
-        buffer *= -1;
-        actualText = '\\_'.repeat(buffer) + actualText + '\\_'.repeat(buffer);
+function makeClassChart(headerText, valueText) {
+    if(headerText.length > valueText.length) {
+        const diff = (headerText.length-valueText.length)/2;
+        const oddBuffer = headerText.length%2==0 ? 0 : 1;
+        const bufferedValueText = '\\_'.repeat(diff)+valueText+'\\_'.repeat(diff+oddBuffer);
+        return {header: headerText, value: bufferedValueText};
+    } else {
+        const diff = (valueText.length-headerText.length)/2;
+        const oddBuffer = valueText.length%2==0 ? 0 : 1;
+        const bufferedHeaderText = '\\_'.repeat(diff)+headerText+'\\_'.repeat(diff+oddBuffer);
+        return {header: bufferedHeaderText, value: valueText};
     }
 }
+// function makeClassChart(headerText, classHeader, actualText) {
+//     let buffer = (actualText.length-headerText.length)/2;
+//     if(buffer>0) {
+//         classHeader += '\\_'.repeat(buffer) + `**${headerText}**` + '\\_'.repeat(buffer) +'|';
+//     } else if(buffer<0) {
+//         classHeader += `**${headerText}**|`;
+//         buffer *= -1;
+//         actualText = '\\_'.repeat(buffer) + actualText + '\\_'.repeat(buffer);
+//     }
+// }
 
 module.exports = {
     characterPrinter: {
