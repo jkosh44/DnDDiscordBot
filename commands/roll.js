@@ -19,7 +19,7 @@ module.exports = {
             numRolls = parseInt(rollInfo[0]);
             dieSize = parseInt(rollInfo[1]);
             const resRolls = Array.apply(null, {length: numRolls}).map((_) => {
-                return Math.floor(Math.random()*dieSize) + 1;;
+                return Math.floor(Math.random()*dieSize) + 1;
             });
             resMessage = `rolled: ${resRolls.join(",")}`;
         } else {

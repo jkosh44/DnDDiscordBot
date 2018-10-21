@@ -10,9 +10,7 @@ module.exports = {
         const user = message.author;
         const userExists = await characterCreator.characterExists(user.id);
         if(userExists){
-            // const data = await characterPrinter.plainPrint(user.id);
             const data = await characterPrinter.prettyPrint(user.id);
-            // user.send(data, { split: true });
             user.send(data);
         } else {
             try {

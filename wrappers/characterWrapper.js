@@ -1,8 +1,7 @@
-const { skillDb } = require('../db/skill-db.js');
 const { AbilityWrapper } = require('./abilityWrapper.js');
 const { SkillWrapper } = require('./skillWrapper.js');
 const { ArmorWrapper } = require('./armorWrapper.js');
-//TODO: skill proficiency isn't right
+
 class CharacterWrapper {
     constructor(characterModel, allSkills) {
         this.characterModel = characterModel;
@@ -76,6 +75,11 @@ class CharacterWrapper {
     }
     get init() {
         return this.abilityModifierMap['Dex'];
+    }
+
+    getAbilityByName(abilityName) {
+        const ability = this.abilities.filter(curAbility => curAbility.description.toLowerCase() === abilityName.toLowerCase());
+        return ability[0];
     }
 }
 
