@@ -8,6 +8,10 @@ class SkillWrapper {
     get roll() {
         return this.ability.modifier + (this.proficiency ? 2 : 0);
     }
+
+    get descriptionWithAbility() {
+        return `${this.description} (${this.ability.description})`;
+    }
 }
 
 module.exports = {

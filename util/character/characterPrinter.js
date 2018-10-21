@@ -43,7 +43,6 @@ async function plainPrint(characterId) {
 }
 
 async function prettyPrint(characterId) {
-    //TODO
     const [characterModel, allSkills] = await Promise.all([characterDb.getCharacterById(characterId), skillDb.getAllSkills()]);
     const character = new CharacterWrapper(characterModel, allSkills);
 
@@ -68,108 +67,154 @@ async function prettyPrint(characterId) {
         .addField('Background', character.background, true)
         .addBlankField();
 
-    let abilityScores = '';
-    let savingThrows = '';
-    for(var i=0; i<character.abilities.length; i++) {
-        const ability = character.abilities[i];
-        const abilityBuffer = ability.description === 'Str' ? '\\_' : ability.description === 'Int' ? '\\_' : '';
-        const abilitySavingModifierBuffer = ability.savingModifier<0 ? '\\_' : '';
-        const abilityScoreBuffer = ability.score<10 ? '\\_' : '';
-        abilityScores += `${ability.description}${abilityBuffer} | ${ability.score}${abilityScoreBuffer} | ${ability.modifier<0 ? '' : '+'}${ability.modifier}\n`;
-        savingThrows += `${ability.description}${abilityBuffer} | ${ability.savingModifier<0 ? '' : '+'}${ability.savingModifier}${abilitySavingModifierBuffer} | ${ability.saving_throw ? 'x' : ''}\n`;
-    }
-    embed.addField('Ability Scores', abilityScores, true);
+    const abilityScoreTable = makeAbilityScoreTable(character);
+    const savingThrowTable = makeSavingThrowTable(character);
+    embed.addField('Ability Scores', abilityScoreTable, true)
+        .addField('Saving Throws', savingThrowTable, true)
+        .addBlankField();
 
-    embed.addField('Saving Throws', savingThrows, true)
-        .addBlankField()
-
-    const {header:classHeader, value:classValue} = makeClassChart('Name', character.class);
-    const {header:levelHeader, value:levelValue} = makeClassChart('Level', character.level.toString());
-    const {header:hitDiceHeader, value:hitDiceValue} = makeClassChart('Hit Dice', character.currentHitDice);
-    const {header:hpHeader, value:hpValue} = makeClassChart('HP', character.baseHp);
-    const {header:conHeader, value:conValue} = makeClassChart('Con', character.con);
-    const classTableHeader = `${classHeader}|${levelHeader}|${hitDiceHeader}|${hpHeader}|${conHeader}`;
-    const classTableValue = `${classValue}|${levelValue}|${hitDiceValue}|${hpValue}|${conValue}`;
-    embed.addField('Class', `${classTableHeader}\n${classTableValue}`, true);
-    embed.addField('Init', `+${character.init}`, true);
-
-    embed.addBlankField()
-    embed.setFooter('Araya LLC');
-    return embed;
-
+    const classTable = makeClassTable(character);
+    embed.addField('Class', classTable, true)
+        .addField('Init', `+${character.init}`, true)
+        .addBlankField();
     
-   data.push(`Init: ${abilityModifierMap['Dex']}`);
-    data.push(`**Skills**`);
-    const proficiencies = character.skills;
-    //TODO order by skill desc
-    const skills = await skillDb.getAllSkills();
-    for(var i=0; i<skills.length; i++) {
-        const skill = skills[i];
-        const proficienct = proficiencies.includes(skill.skill_description);
-        const abilityDesc = skill.abilities[0].ability_description;
-        const mod = abilityModifierMap[abilityDesc];
-        const roll = mod + (proficienct ? 2 : 0);
-        data.push(`Roll: ${(roll<0 ? '' : '+')}${roll}; Skill: desc ${skill.skill_description} (${abilityDesc}); Prof: ${proficienct ? 'yes' : 'no'}`);
-    }
-    const armorWorn = character.armors.filter(armor => armor.characterArmor.currently_worn);
-    const armorWornAC = armorWorn.reduce((sum, armor) => sum+armor.armor_class, 0);
-    const totArmorDexMods = armorWorn.reduce((sum, armor) => {
-        const armorType = armor.armor_type;
-        let armorDexMod = 0;
-        if(armorType === 'H') {
-            armorDexMod = 0;
-        } else if(armorType === 'M') {
-            armorDexMod = 2;
-        } else if(armorType === 'L') {
-            armorDexMod = abilityModifierMap['Dex'];
-        }
-        return sum+armorDexMod;
-    }, 0);
-    const totHP = character.base_hit_points+armorWornAC;
-    const hitPoints = totHP + con;
-    data.push(`Hit Points: ${hitPoints}`);
-    const ac = armorWornAC + totArmorDexMods;
-    data.push(`AC: ${ac}`);
-    data.push(`**Armor**`);
-    for(var i=0; i<armorWorn.length; i++) {
-        const armor = armorWorn[i];
-        const armorType = armor.armor_type;
-        let armorDexMod = 0;
-        if(armorType === 'H') {
-            armorDexMod = 0;
-        } else if(armorType === 'M') {
-            armorDexMod = 2;
-        } else if(armorType === 'L') {
-            armorDexMod = abilityModifierMap['Dex'];
-        }
-        data.push(`Armor Worn: ${armor.armor_name}; Type: ${armorType}; AC: ${armor.armor_class}; Dex: ${armorDexMod}`);
-    }
-    return data;
+    const skillTable = makeSkillTable(character);    
+    embed.addField('Skills', skillTable, true);
+
+    const armorWornTable = makeArmorWornTable(character);
+    embed.addField('Armor Worn', armorWornTable, true)
+        .addBlankField()
+        .addField('Hit Points', character.hp, true)
+        .addField('AC', character.armorClass, true)
+        .addBlankField()
+        .setFooter('Araya LLC');
+    return embed;
 } 
 
-function makeClassChart(headerText, valueText) {
+function makeAbilityScoreTable(character) {
+    let abilityScores = '```';
+    for(var i=0; i<character.abilities.length; i++) {
+        const ability = character.abilities[i];
+        const abilityScoreBuffer = ability.score<10 ? ' ' : '';
+        abilityScores += `${ability.description} | ${abilityScoreBuffer}${ability.score} | ${ability.modifier<0 ? '' : '+'}${ability.modifier}\n`;
+    }
+    return abilityScores+'```';
+}
+
+function makeSavingThrowTable(character) {
+    let savingThrows = '```Abl | Mod | Prof\n';
+    savingThrows += '----------------\n'
+    for(var i=0; i<character.abilities.length; i++) {
+        const ability = character.abilities[i];
+        savingThrows += `${ability.description} | ${ability.savingModifier<0 ? '' : '+'}${ability.savingModifier}  |  ${ability.savingThrow ? 'X' : ''}\n`;
+    }
+    return savingThrows + '```';
+}
+
+function makeClassTable(character) {
+    const {header:classHeader, value:classValue} = makeClassTablePart('Name', character.class);
+    const {header:levelHeader, value:levelValue} = makeClassTablePart('Level', character.level.toString());
+    const {header:hitDiceHeader, value:hitDiceValue} = makeClassTablePart('Hit Dice', character.currentHitDice);
+    const {header:hpHeader, value:hpValue} = makeClassTablePart('HP', character.baseHp);
+    const {header:conHeader, value:conValue} = makeClassTablePart('Con', character.con);
+    const classTableHeader = `${classHeader} | ${levelHeader} | ${hitDiceHeader} | ${hpHeader} | ${conHeader}`;
+    const classTableValue = `${classValue} | ${levelValue} | ${hitDiceValue} | ${hpValue} | ${conValue}`;
+    return `\`\`\`${classTableHeader}\n${'-'.repeat(classTableHeader.length)}\n${classTableValue}\`\`\``;
+}
+
+function makeClassTablePart(headerText, valueText) {
     if(headerText.length > valueText.length) {
         const diff = (headerText.length-valueText.length)/2;
-        const oddBuffer = headerText.length%2==0 ? 0 : 1;
-        const bufferedValueText = '\\_'.repeat(diff)+valueText+'\\_'.repeat(diff+oddBuffer);
+        const oddBuffer = (headerText.length-valueText.length)%2==0 ? 0 : 1;
+        const bufferedValueText = ' '.repeat(diff)+valueText+' '.repeat(diff+oddBuffer);
         return {header: headerText, value: bufferedValueText};
     } else {
         const diff = (valueText.length-headerText.length)/2;
-        const oddBuffer = valueText.length%2==0 ? 0 : 1;
-        const bufferedHeaderText = '\\_'.repeat(diff)+headerText+'\\_'.repeat(diff+oddBuffer);
+        const oddBuffer = (valueText.length-headerText.length)%2==0 ? 0 : 1;
+        const bufferedHeaderText = ' '.repeat(diff)+headerText+' '.repeat(diff+oddBuffer);
         return {header: bufferedHeaderText, value: valueText};
     }
 }
-// function makeClassChart(headerText, classHeader, actualText) {
-//     let buffer = (actualText.length-headerText.length)/2;
-//     if(buffer>0) {
-//         classHeader += '\\_'.repeat(buffer) + `**${headerText}**` + '\\_'.repeat(buffer) +'|';
-//     } else if(buffer<0) {
-//         classHeader += `**${headerText}**|`;
-//         buffer *= -1;
-//         actualText = '\\_'.repeat(buffer) + actualText + '\\_'.repeat(buffer);
-//     }
-// }
+
+function makeSkillTable(character) {
+    const skills = character.skills;
+    
+    const rolls = skills.map(skill => (skill.ability.modifier>=0 ? '+' : '') + skill.roll.toString());
+    rolls.unshift('Roll ');
+    const rollColumn = makeTableColumn(rolls);
+    const skillNames = skills.map(skill => skill.descriptionWithAbility);
+    skillNames.unshift('Skill');
+    const skillColumn = makeTableColumn(skillNames);
+    const profs = skills.map(skill => skill.proficiency ? 'X' : '');
+    profs.unshift('Prof ');
+    const profColumn = makeTableColumn(profs);
+    const headerSeparator = '-'.repeat(rollColumn[0].length+skillColumn[0].length+profColumn[0].length);
+
+    let table = '```';
+    for(var i =0; i<rollColumn.length; i++) {
+        table+= `${rollColumn[i]}|${skillColumn[i]}|${profColumn[i]}\n`;
+        if(i===0) {
+            table += headerSeparator+'\n';
+        }
+    }
+    return table+'```';
+}
+
+function makeTableColumn(rows) {
+    const maxLength = rows.reduce((max,curRow) => Math.max(max, curRow.length),0);
+    res = [];
+    for(var i=0; i<rows.length; i++) {
+        const row = rows[i];
+        if(row.length < maxLength) {
+            const diff = (maxLength-row.length)/2;
+            const oddBuffer = (maxLength-row.length)%2==0 ? 0 : 1;
+            const bufferedRow = `${' '.repeat(diff)}${row}${' '.repeat(diff+oddBuffer)}`;
+            res.push(bufferedRow);
+        } else {
+            res.push(row);
+        }
+    }
+    return res;
+}
+
+function makeArmorWornTable(character) {
+    const armorsWorn = character.armorsWorn;
+    const armorNames = armorsWorn.map(armor => armor.name);
+    armorNames.unshift('Armor Worn');
+    const armorNameColumn = makeTableColumn(armorNames);
+    const armorTypes = armorsWorn.map(armor => armor.type);
+    armorTypes.unshift('Type');
+    const armorTypesColumn = makeTableColumn(armorTypes);
+    const armorClasses = armorsWorn.map(armor => armor.armorClass);
+    armorClasses.unshift('AC');
+    const totAC = character.armorsWorn.reduce((sum, armor) => sum+armor.armorClass, 0);
+    armorClasses.push(totAC);
+    const armorClassesColumn = makeTableColumn(armorClasses);
+    const armorDexes = armorsWorn.map(armor => armor.armorDexMod);
+    armorDexes.unshift('Dex');
+    const totDex = character.armorsWorn.reduce((sum, armor) => sum+armor.armorDexMod, 0);
+    armorDexes.push(totDex);
+    const armorDexColumn = makeTableColumn(armorDexes);
+    const rowLength = armorNameColumn[0].length + armorTypesColumn[0].length + armorClassesColumn[0].length + armorDexColumn[0].length;
+    const spaces = 6;
+    const colSeparators = 3;
+    const rowSeparator = '-'.repeat(rowLength+spaces+colSeparators);
+
+    let armorTable = '```';
+    for(var i=0; i<armorNameColumn.length; i++) {
+        armorTable += `${armorNameColumn[i]} | ${armorTypesColumn[i]} | ${armorClassesColumn[i]} | ${armorDexColumn[i]}\n`;
+        if(i===0) {
+            armorTable += `${rowSeparator}\n`;
+        }
+    }
+    armorTable += rowSeparator + '\n';
+    const spacesToTotal = 4;
+    const colSeparatorsToTotal = 2;
+    const lengthToTotals = armorNameColumn[0].length + armorTypesColumn[0].length + spacesToTotal + colSeparatorsToTotal;
+    const totalRow = `${' '.repeat(lengthToTotals-'Total: '.length)}Total: ${armorClassesColumn[armorClassesColumn.length-1]} | ${armorDexColumn[armorDexColumn.length-1]}\n`;
+    return armorTable + totalRow + '```';
+}
+
 
 module.exports = {
     characterPrinter: {
@@ -177,245 +222,3 @@ module.exports = {
         prettyPrint
     }
 }
-
-data = [];
-data.push('Name:\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_  \\_\\_\\_\\_\\_\\_\\_\\_     \\_\\_\\_\\_   \\_\\_\\_\\_\\_\\_\\_\\_   ');
-data.push('Race:\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_  \\\\_\\_\\_\\_\\_\\_ \\   /  \\_ \\  \\\\_\\_\\_\\_\\_\\_ \\  ');
-data.push('Class:\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_   |    |  \\  >  \\_ </\\ |    |  \\ ');
-data.push('Alignment:\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_   |    `   \\/  <\\_\\ \\/ |    `   \\');
-data.push('Background:\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_  /\\_\\_\\_\\_\\_\\_\\_  /\\\\_\\_\\_\\_\\_\\ \\/\\_\\_\\_\\_\\_\\_\\_  /');
-data.push('Level:\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_          \\/        \\/        \\/ ');
-data.push('+-------------------------------------+  +-AC-------+ +-Ini------+ +-Speed-----+');
-data.push('| Inspiration                    [  ] |  |          | |          | |           |');
-data.push('| Proficiency Bonus              [  ] |  +----------+ +----------+ +-----------+');
-data.push('| Passive Wisdom (Perception)    [  ] |  +-Hit Points--------------------------+');
-data.push('+-------------------------------------+  | Maximum:                            |');
-data.push('| STRENGTH                  [  ] [  ] |  | Modifier:                           |');
-data.push('| Saving Throws              [ ] [  ] |  | Current:                            |');
-data.push('| Athlethic                  [ ] [  ] |  | Hit Dice:                           |');
-data.push('+-------------------------------------+  +-Death Saves-------------------------+');
-data.push('| DEXTERITY                 [  ] [  ] |  | Successes               [ ] [ ] [ ] |');
-data.push('| Saving Throws              [ ] [  ] |  | Failures                [ ] [ ] [ ] |');
-data.push('| Acrobatics                 [ ] [  ] |  +-------------------------------------+');
-data.push('| Sleight of Hand            [ ] [  ] |  +-Other Proficiencies & Languages-----+');
-data.push('| Stealth                    [ ] [  ] |  |                                     |');
-data.push('+-------------------------------------+  |                                     |');
-data.push('| CONSTITUTION              [  ] [  ] |  |                                     |');
-data.push('| Saving Throws              [ ] [  ] |  |                                     |');
-data.push('+-------------------------------------+  |                                     |');
-data.push('| INTELLIGENCE              [  ] [  ] |  |                                     |');
-data.push('| Saving Throws              [ ] [  ] |  |                                     |');
-data.push('| Arcana                     [ ] [  ] |  |                                     |');
-data.push('| History                    [ ] [  ] |  |                                     |');
-data.push('| Investigation              [ ] [  ] |  |                                     |');
-data.push('| Nature                     [ ] [  ] |  |                                     |');
-data.push('| Religion                   [ ] [  ] |  |                                     |');
-data.push('+-------------------------------------+  |                                     |');
-data.push('| WISDOM                    [  ] [  ] |  |                                     |');
-data.push('| Saving Throws              [ ] [  ] |  |                                     |');
-data.push('| Animal Handling            [ ] [  ] |  |                                     |');
-data.push('| Insight                    [ ] [  ] |  |                                     |');
-data.push('| Medicine                   [ ] [  ] |  |                                     |');
-data.push('| Perception                 [ ] [  ] |  |                                     |');
-data.push('| Survival                   [ ] [  ] |  |                                     |');
-data.push('+-------------------------------------+  |                                     |');
-data.push('| CHARISMA                  [  ] [  ] |  |                                     |');
-data.push('| Saving Throws              [ ] [  ] |  |                                     |');
-data.push('| Deception                  [ ] [  ] |  |                                     |');
-data.push('| Intimidation               [ ] [  ] |  |                                     |');
-data.push('| Performance                [ ] [  ] |  |                                     |');
-data.push('| Persuation                 [ ] [  ] |  |                                     |');
-data.push('+-------------------------------------+  +-------------------------------------+');
-data.push('+-Weapon--------+-ATK B.-+-Damage/Typ-+-Properties--------------------+-Weight-+');
-data.push('|               |        |            |                               |        |');
-data.push('|               |        |            |                               |        |');
-data.push('|               |        |            |                               |        |');
-data.push('|               |        |            |                               |        |');
-data.push('|               |        |            |                               |        |');
-data.push('|               |        |            |                               |        |');
-data.push('+-Armor/Shild---+-AC B.--+-Properties-+-------------------------------+-Weight-+');
-data.push('|               |        |                                            |        |');
-data.push('|               |        |                                            |        |');
-data.push('|               |        |                                            |        |');
-data.push('|               |        |                                            |        |');
-data.push('+---------------+--------+--------------------------------------------+--------+');
-data.push('+-------------+ +-------------+ +--------------+ +-------------+ +-------------+');
-data.push('| PP [      ] | | GP [      ] | | EP [       ] | | SP [      ] | | CP [      ] |');
-data.push('+-------------+ +-------------+ +--------------+ +-------------+ +-------------+');
-data.push('+-Equipment-----------------------------------------------------------+-Weight-+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('| Max. Bearing Capacity:                                      Weight:          |');
-data.push('+------------------------------------------------------------------------------+');
-data.push('+-Racial Features--------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Background Feature-----------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Class Features---------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Domain Features--------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 2----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 3----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 4----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 5----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 6----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 7----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 8----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 9----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 10---------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 11---------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 12---------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 13---------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 14---------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 15---------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Level 16---------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+------------------------------------------------------------------------------+');
-data.push('+-Age--------+-Height-----+-Weight-----+-Eyes-------+-Skin-------+-Hair--------+');
-data.push('|            |            |            |            |            |             |');
-data.push('+-Appearance-+------------+------------+------------+------------+-------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Backstory--------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Personality Traits-----------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Ideals-----------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Bonds------------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Flaws------------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Allies & Organizations-------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Notes------------------------------------------------------------------------+');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('|                                                                              |');
-data.push('+-Known Players----+-Character--------------+-Race----------+-Class------------+');
-data.push('|                  |                        |               |                  |');
-data.push('|                  |                        |               |                  |');
-data.push('|                  |                        |               |                  |');
-data.push('+------------------+------------------------+---------------+------------------+');
