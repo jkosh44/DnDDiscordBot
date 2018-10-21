@@ -81,6 +81,11 @@ class CharacterWrapper {
         const ability = this.abilities.filter(curAbility => curAbility.description.toLowerCase() === abilityName.toLowerCase());
         return ability[0];
     }
+
+    getSkillByName(skillName) {
+        const skill = this.skills.filter(curSkill => curSkill.description.toLowerCase() === skillName.toLowerCase());
+        return skill[0];
+    }
 }
 
 function getAbilitiesFromCharacter(character) {

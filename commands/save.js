@@ -1,6 +1,7 @@
 const { characterDb } = require('../db/character-db.js');
 const { skillDb } = require('../db/skill-db.js');
 const { CharacterWrapper } = require('../wrappers/characterWrapper.js');
+const { characterCreator } = require('../util/character/characterCreator.js');
 
 module.exports = {
     name: 'save',
@@ -8,6 +9,7 @@ module.exports = {
     usage: [''],
     async execute(message, args, commandName) {
         if(args.length) {
+            await characterCreator.characterExists(message.author.id, true, message);
             const characterModel = await characterDb.getCharacterById(message.author.id);
             const allSkills = await skillDb.getAllSkills();
             const characterWrapper = new CharacterWrapper(characterModel, allSkills);
@@ -17,7 +19,7 @@ module.exports = {
                 return message.reply('I don\'t recognize that ability.');
             }
             const savingMod = ability.savingModifier;
-            message.reply(`${roll} ${savingMod>0 ? '+' : ''}${savingMod}`);
+            message.reply(`${roll} ${savingMod>=0 ? '+' : ''}${savingMod}`);
         } else {
             message.reply('Please provide an ability.');
         }

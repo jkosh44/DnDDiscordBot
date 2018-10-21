@@ -195,8 +195,24 @@ async function createCharacter(characterInfo, abilityScores, armor, proficiencie
     return;
 }
 
-async function characterExists(user_id) {
-    return await characterDb.characterExists(user_id);
+async function characterExists(userId, createIfNot, message) {
+    const charExists = await characterDb.characterExists(userId);
+    if(createIfNot && !charExists) {
+        const user = message.author;
+        try {
+            const char = await getCharacterInfo(user, message);
+            await createCharacter(char.characterInfo, char.abilityScores, char.armor, char.proficiencies);
+            message.author.send('Character creation complete');
+        }
+        catch(err) {
+            if(err === 'Character creation timed out') {
+                user.send('Character creation timed out')
+            } else {
+                user.send('Error creating character');
+            }
+        }
+    }
+    return charExists;
 }
 
 module.exports = {

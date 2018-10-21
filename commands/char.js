@@ -8,24 +8,10 @@ module.exports = {
     aliases: [],
 	async execute(message, args) {
         const user = message.author;
-        const userExists = await characterCreator.characterExists(user.id);
-        if(userExists){
-            const data = await characterPrinter.prettyPrint(user.id);
-            user.send(data);
-        } else {
-            try {
-                const char = await characterCreator.getCharacterInfo(user, message); 
-                characterCreator.createCharacter(char.characterInfo, char.abilityScores, char.armor, char.proficiencies);
-                user.send('Character creation complete');
-            }
-            catch(err) {
-                if(err === 'Character creation timed out') {
-                    user.send('Character creation timed out')
-                } else {
-                    user.send('Error creating character');
-                }
-            }
-
+        await characterCreator.characterExists(user.id, true, message);
+        const data = await characterPrinter.prettyPrint(user.id);
+        user.send(data);
+        
         //     const characterInfo =
         //     { user_id: '259396529016537088',
         //       character_name: 'Joe',
@@ -56,6 +42,6 @@ module.exports = {
         //    const proficiencies = [ 'Intimidation', 'Persuasion', 'Investigation' ];
         //    characterCreator.createCharacter(characterInfo, abilityScores, armor, proficiencies);
 
-        }
+        
     }
 }

@@ -140,14 +140,11 @@ function makeSkillTable(character) {
     const skills = character.skills;
     
     const rolls = skills.map(skill => (skill.ability.modifier>=0 ? '+' : '') + skill.roll.toString());
-    rolls.unshift('Roll ');
-    const rollColumn = makeTableColumn(rolls);
+    const rollColumn = makeTableColumn(['Roll ', ...rolls]);
     const skillNames = skills.map(skill => skill.descriptionWithAbility);
-    skillNames.unshift('Skill');
-    const skillColumn = makeTableColumn(skillNames);
+    const skillColumn = makeTableColumn(['Skill ', ...skillNames]);
     const profs = skills.map(skill => skill.proficiency ? 'X' : '');
-    profs.unshift('Prof ');
-    const profColumn = makeTableColumn(profs);
+    const profColumn = makeTableColumn(['Prof ', ...profs]);
     const headerSeparator = '-'.repeat(rollColumn[0].length+skillColumn[0].length+profColumn[0].length);
 
     let table = '```';
@@ -180,21 +177,15 @@ function makeTableColumn(rows) {
 function makeArmorWornTable(character) {
     const armorsWorn = character.armorsWorn;
     const armorNames = armorsWorn.map(armor => armor.name);
-    armorNames.unshift('Armor Worn');
-    const armorNameColumn = makeTableColumn(armorNames);
+    const armorNameColumn = makeTableColumn(['Armor Worn', ...armorNames]);
     const armorTypes = armorsWorn.map(armor => armor.type);
-    armorTypes.unshift('Type');
-    const armorTypesColumn = makeTableColumn(armorTypes);
+    const armorTypesColumn = makeTableColumn(['Type', ...armorTypes]);
     const armorClasses = armorsWorn.map(armor => armor.armorClass);
-    armorClasses.unshift('AC');
     const totAC = character.armorsWorn.reduce((sum, armor) => sum+armor.armorClass, 0);
-    armorClasses.push(totAC);
-    const armorClassesColumn = makeTableColumn(armorClasses);
+    const armorClassesColumn = makeTableColumn(['AC', ...armorClasses, totAC]);
     const armorDexes = armorsWorn.map(armor => armor.armorDexMod);
-    armorDexes.unshift('Dex');
     const totDex = character.armorsWorn.reduce((sum, armor) => sum+armor.armorDexMod, 0);
-    armorDexes.push(totDex);
-    const armorDexColumn = makeTableColumn(armorDexes);
+    const armorDexColumn = makeTableColumn(['Dex', ...armorDexes, totDex]);
     const rowLength = armorNameColumn[0].length + armorTypesColumn[0].length + armorClassesColumn[0].length + armorDexColumn[0].length;
     const spaces = 6;
     const colSeparators = 3;
