@@ -6,7 +6,7 @@ module.exports = {
     name: 'ability-check',
     description: 'Rolls an ability check',
     usage: [''],
-    aliases: ['check', 'str', 'dex', 'con', 'int', 'wis', 'cha'],
+    aliases: ['ability', 'check', 'str', 'dex', 'con', 'int', 'wis', 'cha'],
     async execute(message, args, commandName) {
         const characterModel = await characterDb.getCharacterById(message.author.id);
         const allSkills = await skillDb.getAllSkills();
@@ -19,7 +19,7 @@ module.exports = {
                 message.reply('Sorry, I don\'t recognize that ability');
             }
             message.reply(`${roll} ${ability.modifier>0 ? '+' : ''}${ability.modifier}`);
-        } else if(commandName !== 'check'){
+        } else if(['str', 'dex', 'con', 'int', 'wis', 'cha'].includes(commandName)){
             const ability = characterWrapper.getAbilityByName(commandName);
             if(!ability) {
                 message.reply('Sorry, I don\'t recognize that ability');
