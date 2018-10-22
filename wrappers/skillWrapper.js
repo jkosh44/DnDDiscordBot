@@ -1,12 +1,13 @@
 class SkillWrapper {
-    constructor(description, proficiency, ability){
+    constructor(description, proficiency, ability, proficiencyBonus){
         this.description = description;
         this.proficiency = proficiency;
         this.ability = ability;
+        this.proficiencyBonus = proficiencyBonus;
     }
 
     get roll() {
-        return this.ability.modifier + (this.proficiency ? 2 : 0);
+        return this.ability.modifier + (this.proficiency ? this.proficiencyBonus : 0);
     }
 
     get descriptionWithAbility() {

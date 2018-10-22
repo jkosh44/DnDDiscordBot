@@ -47,6 +47,9 @@ class CharacterWrapper {
     get background() {
         return this.characterModel.background;
     }
+    get proficiencyBonus() {
+        return Math.ceil((this.level/4)+1);
+    }
     get con() {
         return this.level*this.abilityModifierMap['Con'];
     }
@@ -76,6 +79,12 @@ class CharacterWrapper {
     get init() {
         return this.abilityModifierMap['Dex'];
     }
+    get spellDCs() {
+        return 8 + this.proficiencyBonus + this.abilityModifierMap['Int'];
+    }
+    get spellAttack() {
+        return this.proficiencyBonus + this.abilityModifierMap['Int'];
+    }
 
     getAbilityByName(abilityName) {
         const ability = this.abilities.filter(curAbility => curAbility.description.toLowerCase() === abilityName.toLowerCase());
@@ -93,7 +102,8 @@ function getAbilitiesFromCharacter(character) {
     const abilities = character.abilities;
     for(var i=0; i<abilities.length; i++){
         const ability = abilities[i];
-        const abilityWrapper = new AbilityWrapper(ability.ability_description, ability.characterAbilityScore.ability_score, ability.characterAbilityScore.saving_throw);
+        const abilityWrapper = new AbilityWrapper(ability.ability_description, ability.characterAbilityScore.ability_score, 
+            ability.characterAbilityScore.saving_throw, this.proficiency);
         res.push(abilityWrapper);
     }
     return res;
@@ -115,7 +125,7 @@ function getSkillsFromCharacter(character, abilities, skills) {
         const proficiency = proficiencies.includes(skill.skill_description);
         const abilityDesc = skill.abilities[0].ability_description;
         const ability = abilities.filter(ability => ability.description===abilityDesc)[0];
-        res.push(new SkillWrapper(skill.skill_description, proficiency, ability));
+        res.push(new SkillWrapper(skill.skill_description, proficiency, ability, this.proficiencyBonus));
     }
     return res;
 }
