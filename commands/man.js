@@ -2,7 +2,7 @@ const { Manual } = require('../util/manual.js');
 
 module.exports = {
     name: 'man',
-    description: 'Direct messages info about the campaign',
+    description: 'Allows creating, editing, viewing, and deletion of info about the game',
     usage: ['', '<entry-name>', 'add <entry-name> <description>', 'update <entry-name> <new-description>', 'del <entry-name>'],
     async execute(message, args) {
         const manual = new Manual('Manual', 'man', 'Manual');

@@ -3,7 +3,7 @@ const { dungeon_master } = require('../config.json');
 
 module.exports = {
     name: 'notes',
-    description: 'Direct messages the Dungeon Master some private info about the campaign',
+    description: 'Allows creating, editing, viewing, and deletion of random notes about the game',
     usage: ['', '<entry-name>', 'add <entry-name> <description>', 'update <entry-name> <new-description>', 'del <entry-name>'],
     execute(message, args) {
         const manual = new Manual('Notes', 'master', 'Notes');
