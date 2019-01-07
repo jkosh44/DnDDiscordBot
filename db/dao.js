@@ -4,6 +4,7 @@ let schema;
 
 async function initSchema() {
     schema = await getDbSchema();
+    return;
 }
 
 async function sync() {
