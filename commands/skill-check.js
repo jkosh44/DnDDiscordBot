@@ -74,20 +74,16 @@ module.exports = {
         const allSkills = await skillDb.getAllSkills();
         const characterWrapper = new CharacterWrapper(characterModel, allSkills);
         const roll = Math.floor(Math.random()*20) + 1;
+        let skillName = '';
         if(args.length) {
-            const skillName = skillMap.get(args[0].toLowerCase());
-            const skill = characterWrapper.getSkillByName(skillName);
-            if(!skill) {
-                return message.reply('Sorry, I don\'t recognize that skill');
-            }
-            message.reply(`${roll} ${skill.roll>=0 ? '+' : ''}${skill.roll}`);
+            skillName = skillMap.get(args[0].toLowerCase());
         } else {
-            const skillName = skillMap.get(commandName.toLowerCase());
-            const skill = characterWrapper.getSkillByName(skillName);
-            if(!skill) {
-                return message.reply('Sorry, I don\'t recognize that skill');
-            }
-            message.reply(`${roll} ${skill.roll>=0 ? '+' : ''}${skill.roll}`);
+            skillName = skillMap.get(commandName.toLowerCase());
         }
+        const skill = characterWrapper.getSkillByName(skillName);
+        if(!skill) {
+            return message.reply('Sorry, I don\'t recognize that skill');
+        }
+        return message.reply(`${roll} ${skill.roll>=0 ? '+' : ''}${skill.roll}`);
     },
 };
