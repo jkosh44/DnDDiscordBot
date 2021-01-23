@@ -12,7 +12,7 @@
     "canvas": "^2.0.0-alpha.13",
     "discord.js": "^11.4.2",
     "request": "^2.88.0",
-    "sequelize": "^4.43.0",
+    "sequelize": ">=4.44.4",
     "sqlite3": "^4.0.2"
   }
 }
